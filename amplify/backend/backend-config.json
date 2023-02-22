@@ -23,69 +23,7 @@
       ]
     }
   },
-  "function": {
-    "S3Triggerb3a090e2": {
-      "service": "Lambda",
-      "providerPlugin": "awscloudformation",
-      "build": true
-    },
-    "query": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "jsonstorage",
-          "attributes": [
-            "BucketName"
-          ]
-        },
-        {
-          "category": "custom",
-          "resourceName": "querySQS",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
-    },
-    "twitterCompliance": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": []
-    },
-    "api": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "jsonstorage",
-          "attributes": [
-            "BucketName"
-          ]
-        }
-      ]
-    },
-    "sqsquery": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "storage",
-          "resourceName": "jsonstorage",
-          "attributes": [
-            "BucketName"
-          ]
-        }
-      ]
-    }
-  },
+  "function": {},
   "storage": {
     "jsonstorage": {
       "service": "S3",
@@ -168,41 +106,7 @@
           }
         }
       }
-    },
-    "query": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "query",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
-    },
-    "api": {
-      "service": "API Gateway",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "api",
-          "attributes": [
-            "Name",
-            "Arn"
-          ]
-        }
-      ]
     }
   },
-  "custom": {
-    "querySQS": {
-      "service": "customCloudformation",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  }
+  "custom": {}
 }

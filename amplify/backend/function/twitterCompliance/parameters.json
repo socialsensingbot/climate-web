@@ -1,4 +1,0 @@
-{
-  "CloudWatchRule": "rate(4 hours)",
-  "secretsPathAmplifyAppId": "dtmxl3q3i7oix"
-}

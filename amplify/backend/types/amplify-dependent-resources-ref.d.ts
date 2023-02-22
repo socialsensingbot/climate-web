@@ -19,40 +19,6 @@ export type AmplifyDependentResourcesAttributes = {
             "cypressBGroupRole": "string"
         }
     },
-    "function": {
-        "S3Triggerb3a090e2": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "query": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "twitterCompliance": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string",
-            "CloudWatchEventRule": "string"
-        },
-        "api": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
-        },
-        "sqsquery": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string",
-            "lambdaexecutionpolicy": "string"
-        }
-    },
     "storage": {
         "jsonstorage": {
             "BucketName": "string",
@@ -63,23 +29,6 @@ export type AmplifyDependentResourcesAttributes = {
         "socialsensing": {
             "GraphQLAPIIdOutput": "string",
             "GraphQLAPIEndpointOutput": "string"
-        },
-        "query": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        },
-        "api": {
-            "RootUrl": "string",
-            "ApiName": "string",
-            "ApiId": "string"
-        }
-    },
-    "custom": {
-        "querySQS": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string"
         }
     }
 }
