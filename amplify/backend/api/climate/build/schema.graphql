@@ -1,0 +1,981 @@
+
+type UserPreferences {
+  id: ID!
+  owner: String
+  prefs: AWSJSON
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type UserDashboard {
+  id: ID!
+  owner: String
+  dashboard: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupDashboard {
+  id: ID!
+  group: String!
+  dashboard: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type SavedGraph {
+  id: ID!
+  type: String!
+  title: String!
+  state: String!
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type TextAutocomplete {
+  id: ID!
+  type: String!
+  text: String!
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type UserSession {
+  id: ID!
+  fingerprint: String
+  client: AWSJSON
+  open: Boolean!
+  group: String!
+  owner: String
+  ttl: Int
+  createdAt: AWSDateTime
+  sessionId: String
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupPreferences {
+  id: ID!
+  group: String!
+  prefs: AWSJSON
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupTweetIgnore {
+  id: ID!
+  url: String!
+  ignoredBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  scope: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupTweetAnnotations {
+  id: ID!
+  url: String!
+  annotatedBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  annotations: AWSJSON
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupTwitterUserIgnore {
+  id: ID!
+  twitterScreenName: String!
+  ignoredBy: String!
+  ownerGroups: [String]
+  scope: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+input ModelStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelBooleanInput {
+  ne: Boolean
+  eq: Boolean
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+}
+
+input ModelIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  size: ModelSizeInput
+}
+
+input ModelSubscriptionStringInput {
+  ne: String
+  eq: String
+  le: String
+  lt: String
+  ge: String
+  gt: String
+  contains: String
+  notContains: String
+  between: [String]
+  beginsWith: String
+  in: [String]
+  notIn: [String]
+}
+
+input ModelSubscriptionIntInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+  in: [Int]
+  notIn: [Int]
+}
+
+input ModelSubscriptionFloatInput {
+  ne: Float
+  eq: Float
+  le: Float
+  lt: Float
+  ge: Float
+  gt: Float
+  between: [Float]
+  in: [Float]
+  notIn: [Float]
+}
+
+input ModelSubscriptionBooleanInput {
+  ne: Boolean
+  eq: Boolean
+}
+
+input ModelSubscriptionIDInput {
+  ne: ID
+  eq: ID
+  le: ID
+  lt: ID
+  ge: ID
+  gt: ID
+  contains: ID
+  notContains: ID
+  between: [ID]
+  beginsWith: ID
+  in: [ID]
+  notIn: [ID]
+}
+
+enum ModelAttributeTypes {
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+  _null
+}
+
+input ModelSizeInput {
+  ne: Int
+  eq: Int
+  le: Int
+  lt: Int
+  ge: Int
+  gt: Int
+  between: [Int]
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+type ModelUserPreferencesConnection {
+  items: [UserPreferences]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserPreferencesFilterInput {
+  id: ModelIDInput
+  owner: ModelStringInput
+  prefs: ModelStringInput
+  and: [ModelUserPreferencesFilterInput]
+  or: [ModelUserPreferencesFilterInput]
+  not: ModelUserPreferencesFilterInput
+}
+
+type Query {
+  getUserPreferences(id: ID!): UserPreferences
+  listUserPreferences(filter: ModelUserPreferencesFilterInput, limit: Int, nextToken: String): ModelUserPreferencesConnection
+  syncUserPreferences(filter: ModelUserPreferencesFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserPreferencesConnection
+  getUserDashboard(id: ID!): UserDashboard
+  listUserDashboards(filter: ModelUserDashboardFilterInput, limit: Int, nextToken: String): ModelUserDashboardConnection
+  syncUserDashboards(filter: ModelUserDashboardFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserDashboardConnection
+  getGroupDashboard(id: ID!): GroupDashboard
+  listGroupDashboards(filter: ModelGroupDashboardFilterInput, limit: Int, nextToken: String): ModelGroupDashboardConnection
+  syncGroupDashboards(filter: ModelGroupDashboardFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupDashboardConnection
+  getSavedGraph(id: ID!): SavedGraph
+  listSavedGraphs(filter: ModelSavedGraphFilterInput, limit: Int, nextToken: String): ModelSavedGraphConnection
+  syncSavedGraphs(filter: ModelSavedGraphFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelSavedGraphConnection
+  getTextAutocomplete(id: ID!): TextAutocomplete
+  listTextAutocompletes(filter: ModelTextAutocompleteFilterInput, limit: Int, nextToken: String): ModelTextAutocompleteConnection
+  syncTextAutocompletes(filter: ModelTextAutocompleteFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelTextAutocompleteConnection
+  getUserSession(id: ID!): UserSession
+  listUserSessions(filter: ModelUserSessionFilterInput, limit: Int, nextToken: String): ModelUserSessionConnection
+  syncUserSessions(filter: ModelUserSessionFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelUserSessionConnection
+  getGroupPreferences(id: ID!): GroupPreferences
+  listGroupPreferences(filter: ModelGroupPreferencesFilterInput, limit: Int, nextToken: String): ModelGroupPreferencesConnection
+  syncGroupPreferences(filter: ModelGroupPreferencesFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupPreferencesConnection
+  getGroupTweetIgnore(id: ID!): GroupTweetIgnore
+  listGroupTweetIgnores(filter: ModelGroupTweetIgnoreFilterInput, limit: Int, nextToken: String): ModelGroupTweetIgnoreConnection
+  syncGroupTweetIgnores(filter: ModelGroupTweetIgnoreFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTweetIgnoreConnection
+  getGroupTweetAnnotations(id: ID!): GroupTweetAnnotations
+  listGroupTweetAnnotations(filter: ModelGroupTweetAnnotationsFilterInput, limit: Int, nextToken: String): ModelGroupTweetAnnotationsConnection
+  syncGroupTweetAnnotations(filter: ModelGroupTweetAnnotationsFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTweetAnnotationsConnection
+  getGroupTwitterUserIgnore(id: ID!): GroupTwitterUserIgnore
+  listGroupTwitterUserIgnores(filter: ModelGroupTwitterUserIgnoreFilterInput, limit: Int, nextToken: String): ModelGroupTwitterUserIgnoreConnection
+  syncGroupTwitterUserIgnores(filter: ModelGroupTwitterUserIgnoreFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTwitterUserIgnoreConnection
+}
+
+input ModelUserPreferencesConditionInput {
+  owner: ModelStringInput
+  prefs: ModelStringInput
+  and: [ModelUserPreferencesConditionInput]
+  or: [ModelUserPreferencesConditionInput]
+  not: ModelUserPreferencesConditionInput
+}
+
+input CreateUserPreferencesInput {
+  id: ID
+  owner: String
+  prefs: AWSJSON
+  _version: Int
+}
+
+input UpdateUserPreferencesInput {
+  id: ID!
+  owner: String
+  prefs: AWSJSON
+  _version: Int
+}
+
+input DeleteUserPreferencesInput {
+  id: ID!
+  _version: Int
+}
+
+type Mutation {
+  createUserPreferences(input: CreateUserPreferencesInput!, condition: ModelUserPreferencesConditionInput): UserPreferences
+  updateUserPreferences(input: UpdateUserPreferencesInput!, condition: ModelUserPreferencesConditionInput): UserPreferences
+  deleteUserPreferences(input: DeleteUserPreferencesInput!, condition: ModelUserPreferencesConditionInput): UserPreferences
+  createUserDashboard(input: CreateUserDashboardInput!, condition: ModelUserDashboardConditionInput): UserDashboard
+  updateUserDashboard(input: UpdateUserDashboardInput!, condition: ModelUserDashboardConditionInput): UserDashboard
+  deleteUserDashboard(input: DeleteUserDashboardInput!, condition: ModelUserDashboardConditionInput): UserDashboard
+  createGroupDashboard(input: CreateGroupDashboardInput!, condition: ModelGroupDashboardConditionInput): GroupDashboard
+  updateGroupDashboard(input: UpdateGroupDashboardInput!, condition: ModelGroupDashboardConditionInput): GroupDashboard
+  deleteGroupDashboard(input: DeleteGroupDashboardInput!, condition: ModelGroupDashboardConditionInput): GroupDashboard
+  createSavedGraph(input: CreateSavedGraphInput!, condition: ModelSavedGraphConditionInput): SavedGraph
+  updateSavedGraph(input: UpdateSavedGraphInput!, condition: ModelSavedGraphConditionInput): SavedGraph
+  deleteSavedGraph(input: DeleteSavedGraphInput!, condition: ModelSavedGraphConditionInput): SavedGraph
+  createTextAutocomplete(input: CreateTextAutocompleteInput!, condition: ModelTextAutocompleteConditionInput): TextAutocomplete
+  updateTextAutocomplete(input: UpdateTextAutocompleteInput!, condition: ModelTextAutocompleteConditionInput): TextAutocomplete
+  deleteTextAutocomplete(input: DeleteTextAutocompleteInput!, condition: ModelTextAutocompleteConditionInput): TextAutocomplete
+  createUserSession(input: CreateUserSessionInput!, condition: ModelUserSessionConditionInput): UserSession
+  updateUserSession(input: UpdateUserSessionInput!, condition: ModelUserSessionConditionInput): UserSession
+  deleteUserSession(input: DeleteUserSessionInput!, condition: ModelUserSessionConditionInput): UserSession
+  createGroupPreferences(input: CreateGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
+  updateGroupPreferences(input: UpdateGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
+  deleteGroupPreferences(input: DeleteGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
+  createGroupTweetIgnore(input: CreateGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  updateGroupTweetIgnore(input: UpdateGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  deleteGroupTweetIgnore(input: DeleteGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  createGroupTweetAnnotations(input: CreateGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  updateGroupTweetAnnotations(input: UpdateGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  deleteGroupTweetAnnotations(input: DeleteGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  createGroupTwitterUserIgnore(input: CreateGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
+  updateGroupTwitterUserIgnore(input: UpdateGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
+  deleteGroupTwitterUserIgnore(input: DeleteGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
+}
+
+input ModelSubscriptionUserPreferencesFilterInput {
+  id: ModelSubscriptionIDInput
+  prefs: ModelSubscriptionStringInput
+  and: [ModelSubscriptionUserPreferencesFilterInput]
+  or: [ModelSubscriptionUserPreferencesFilterInput]
+}
+
+type Subscription {
+  onCreateUserPreferences(filter: ModelSubscriptionUserPreferencesFilterInput, owner: String): UserPreferences @aws_subscribe(mutations: ["createUserPreferences"])
+  onUpdateUserPreferences(filter: ModelSubscriptionUserPreferencesFilterInput, owner: String): UserPreferences @aws_subscribe(mutations: ["updateUserPreferences"])
+  onDeleteUserPreferences(filter: ModelSubscriptionUserPreferencesFilterInput, owner: String): UserPreferences @aws_subscribe(mutations: ["deleteUserPreferences"])
+  onCreateUserDashboard(filter: ModelSubscriptionUserDashboardFilterInput, owner: String): UserDashboard @aws_subscribe(mutations: ["createUserDashboard"])
+  onUpdateUserDashboard(filter: ModelSubscriptionUserDashboardFilterInput, owner: String): UserDashboard @aws_subscribe(mutations: ["updateUserDashboard"])
+  onDeleteUserDashboard(filter: ModelSubscriptionUserDashboardFilterInput, owner: String): UserDashboard @aws_subscribe(mutations: ["deleteUserDashboard"])
+  onCreateGroupDashboard(filter: ModelSubscriptionGroupDashboardFilterInput): GroupDashboard @aws_subscribe(mutations: ["createGroupDashboard"])
+  onUpdateGroupDashboard(filter: ModelSubscriptionGroupDashboardFilterInput): GroupDashboard @aws_subscribe(mutations: ["updateGroupDashboard"])
+  onDeleteGroupDashboard(filter: ModelSubscriptionGroupDashboardFilterInput): GroupDashboard @aws_subscribe(mutations: ["deleteGroupDashboard"])
+  onCreateSavedGraph(filter: ModelSubscriptionSavedGraphFilterInput): SavedGraph @aws_subscribe(mutations: ["createSavedGraph"])
+  onUpdateSavedGraph(filter: ModelSubscriptionSavedGraphFilterInput): SavedGraph @aws_subscribe(mutations: ["updateSavedGraph"])
+  onDeleteSavedGraph(filter: ModelSubscriptionSavedGraphFilterInput): SavedGraph @aws_subscribe(mutations: ["deleteSavedGraph"])
+  onCreateTextAutocomplete(filter: ModelSubscriptionTextAutocompleteFilterInput): TextAutocomplete @aws_subscribe(mutations: ["createTextAutocomplete"])
+  onUpdateTextAutocomplete(filter: ModelSubscriptionTextAutocompleteFilterInput): TextAutocomplete @aws_subscribe(mutations: ["updateTextAutocomplete"])
+  onDeleteTextAutocomplete(filter: ModelSubscriptionTextAutocompleteFilterInput): TextAutocomplete @aws_subscribe(mutations: ["deleteTextAutocomplete"])
+  onCreateUserSession(filter: ModelSubscriptionUserSessionFilterInput): UserSession @aws_subscribe(mutations: ["createUserSession"])
+  onUpdateUserSession(filter: ModelSubscriptionUserSessionFilterInput): UserSession @aws_subscribe(mutations: ["updateUserSession"])
+  onDeleteUserSession(filter: ModelSubscriptionUserSessionFilterInput): UserSession @aws_subscribe(mutations: ["deleteUserSession"])
+  onCreateGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["createGroupPreferences"])
+  onUpdateGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["updateGroupPreferences"])
+  onDeleteGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["deleteGroupPreferences"])
+  onCreateGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["createGroupTweetIgnore"])
+  onUpdateGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["updateGroupTweetIgnore"])
+  onDeleteGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["deleteGroupTweetIgnore"])
+  onCreateGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["createGroupTweetAnnotations"])
+  onUpdateGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["updateGroupTweetAnnotations"])
+  onDeleteGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["deleteGroupTweetAnnotations"])
+  onCreateGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["createGroupTwitterUserIgnore"])
+  onUpdateGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["updateGroupTwitterUserIgnore"])
+  onDeleteGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["deleteGroupTwitterUserIgnore"])
+}
+
+type ModelUserDashboardConnection {
+  items: [UserDashboard]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserDashboardFilterInput {
+  id: ModelIDInput
+  owner: ModelStringInput
+  dashboard: ModelStringInput
+  and: [ModelUserDashboardFilterInput]
+  or: [ModelUserDashboardFilterInput]
+  not: ModelUserDashboardFilterInput
+}
+
+input ModelUserDashboardConditionInput {
+  owner: ModelStringInput
+  dashboard: ModelStringInput
+  and: [ModelUserDashboardConditionInput]
+  or: [ModelUserDashboardConditionInput]
+  not: ModelUserDashboardConditionInput
+}
+
+input CreateUserDashboardInput {
+  id: ID
+  owner: String
+  dashboard: String!
+  _version: Int
+}
+
+input UpdateUserDashboardInput {
+  id: ID!
+  owner: String
+  dashboard: String
+  _version: Int
+}
+
+input DeleteUserDashboardInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionUserDashboardFilterInput {
+  id: ModelSubscriptionIDInput
+  dashboard: ModelSubscriptionStringInput
+  and: [ModelSubscriptionUserDashboardFilterInput]
+  or: [ModelSubscriptionUserDashboardFilterInput]
+}
+
+type ModelGroupDashboardConnection {
+  items: [GroupDashboard]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupDashboardFilterInput {
+  id: ModelIDInput
+  group: ModelStringInput
+  dashboard: ModelStringInput
+  and: [ModelGroupDashboardFilterInput]
+  or: [ModelGroupDashboardFilterInput]
+  not: ModelGroupDashboardFilterInput
+}
+
+input ModelGroupDashboardConditionInput {
+  group: ModelStringInput
+  dashboard: ModelStringInput
+  and: [ModelGroupDashboardConditionInput]
+  or: [ModelGroupDashboardConditionInput]
+  not: ModelGroupDashboardConditionInput
+}
+
+input CreateGroupDashboardInput {
+  id: ID
+  group: String!
+  dashboard: String!
+  _version: Int
+}
+
+input UpdateGroupDashboardInput {
+  id: ID!
+  group: String
+  dashboard: String
+  _version: Int
+}
+
+input DeleteGroupDashboardInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupDashboardFilterInput {
+  id: ModelSubscriptionIDInput
+  group: ModelSubscriptionStringInput
+  dashboard: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupDashboardFilterInput]
+  or: [ModelSubscriptionGroupDashboardFilterInput]
+}
+
+type ModelSavedGraphConnection {
+  items: [SavedGraph]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelSavedGraphFilterInput {
+  id: ModelIDInput
+  type: ModelStringInput
+  title: ModelStringInput
+  state: ModelStringInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelSavedGraphFilterInput]
+  or: [ModelSavedGraphFilterInput]
+  not: ModelSavedGraphFilterInput
+}
+
+input ModelSavedGraphConditionInput {
+  type: ModelStringInput
+  title: ModelStringInput
+  state: ModelStringInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelSavedGraphConditionInput]
+  or: [ModelSavedGraphConditionInput]
+  not: ModelSavedGraphConditionInput
+}
+
+input CreateSavedGraphInput {
+  id: ID
+  type: String!
+  title: String!
+  state: String!
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  _version: Int
+}
+
+input UpdateSavedGraphInput {
+  id: ID!
+  type: String
+  title: String
+  state: String
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  _version: Int
+}
+
+input DeleteSavedGraphInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionSavedGraphFilterInput {
+  id: ModelSubscriptionIDInput
+  type: ModelSubscriptionStringInput
+  title: ModelSubscriptionStringInput
+  state: ModelSubscriptionStringInput
+  group: ModelSubscriptionStringInput
+  owner: ModelSubscriptionStringInput
+  createdAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionSavedGraphFilterInput]
+  or: [ModelSubscriptionSavedGraphFilterInput]
+}
+
+type ModelTextAutocompleteConnection {
+  items: [TextAutocomplete]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelTextAutocompleteFilterInput {
+  id: ModelIDInput
+  type: ModelStringInput
+  text: ModelStringInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelTextAutocompleteFilterInput]
+  or: [ModelTextAutocompleteFilterInput]
+  not: ModelTextAutocompleteFilterInput
+}
+
+input ModelTextAutocompleteConditionInput {
+  type: ModelStringInput
+  text: ModelStringInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  createdAt: ModelStringInput
+  and: [ModelTextAutocompleteConditionInput]
+  or: [ModelTextAutocompleteConditionInput]
+  not: ModelTextAutocompleteConditionInput
+}
+
+input CreateTextAutocompleteInput {
+  id: ID
+  type: String!
+  text: String!
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  _version: Int
+}
+
+input UpdateTextAutocompleteInput {
+  id: ID!
+  type: String
+  text: String
+  group: String
+  owner: String
+  createdAt: AWSDateTime
+  _version: Int
+}
+
+input DeleteTextAutocompleteInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionTextAutocompleteFilterInput {
+  id: ModelSubscriptionIDInput
+  type: ModelSubscriptionStringInput
+  text: ModelSubscriptionStringInput
+  group: ModelSubscriptionStringInput
+  owner: ModelSubscriptionStringInput
+  createdAt: ModelSubscriptionStringInput
+  and: [ModelSubscriptionTextAutocompleteFilterInput]
+  or: [ModelSubscriptionTextAutocompleteFilterInput]
+}
+
+type ModelUserSessionConnection {
+  items: [UserSession]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelUserSessionFilterInput {
+  id: ModelIDInput
+  fingerprint: ModelStringInput
+  client: ModelStringInput
+  open: ModelBooleanInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  ttl: ModelIntInput
+  createdAt: ModelStringInput
+  sessionId: ModelStringInput
+  and: [ModelUserSessionFilterInput]
+  or: [ModelUserSessionFilterInput]
+  not: ModelUserSessionFilterInput
+}
+
+input ModelUserSessionConditionInput {
+  fingerprint: ModelStringInput
+  client: ModelStringInput
+  open: ModelBooleanInput
+  group: ModelStringInput
+  owner: ModelStringInput
+  ttl: ModelIntInput
+  createdAt: ModelStringInput
+  sessionId: ModelStringInput
+  and: [ModelUserSessionConditionInput]
+  or: [ModelUserSessionConditionInput]
+  not: ModelUserSessionConditionInput
+}
+
+input CreateUserSessionInput {
+  id: ID
+  fingerprint: String
+  client: AWSJSON
+  open: Boolean!
+  group: String!
+  owner: String
+  ttl: Int
+  createdAt: AWSDateTime
+  sessionId: String
+  _version: Int
+}
+
+input UpdateUserSessionInput {
+  id: ID!
+  fingerprint: String
+  client: AWSJSON
+  open: Boolean
+  group: String
+  owner: String
+  ttl: Int
+  createdAt: AWSDateTime
+  sessionId: String
+  _version: Int
+}
+
+input DeleteUserSessionInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionUserSessionFilterInput {
+  id: ModelSubscriptionIDInput
+  fingerprint: ModelSubscriptionStringInput
+  client: ModelSubscriptionStringInput
+  open: ModelSubscriptionBooleanInput
+  group: ModelSubscriptionStringInput
+  owner: ModelSubscriptionStringInput
+  ttl: ModelSubscriptionIntInput
+  createdAt: ModelSubscriptionStringInput
+  sessionId: ModelSubscriptionStringInput
+  and: [ModelSubscriptionUserSessionFilterInput]
+  or: [ModelSubscriptionUserSessionFilterInput]
+}
+
+type ModelGroupPreferencesConnection {
+  items: [GroupPreferences]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupPreferencesFilterInput {
+  id: ModelIDInput
+  group: ModelStringInput
+  prefs: ModelStringInput
+  and: [ModelGroupPreferencesFilterInput]
+  or: [ModelGroupPreferencesFilterInput]
+  not: ModelGroupPreferencesFilterInput
+}
+
+input ModelGroupPreferencesConditionInput {
+  group: ModelStringInput
+  prefs: ModelStringInput
+  and: [ModelGroupPreferencesConditionInput]
+  or: [ModelGroupPreferencesConditionInput]
+  not: ModelGroupPreferencesConditionInput
+}
+
+input CreateGroupPreferencesInput {
+  id: ID
+  group: String!
+  prefs: AWSJSON
+  _version: Int
+}
+
+input UpdateGroupPreferencesInput {
+  id: ID!
+  group: String
+  prefs: AWSJSON
+  _version: Int
+}
+
+input DeleteGroupPreferencesInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupPreferencesFilterInput {
+  id: ModelSubscriptionIDInput
+  group: ModelSubscriptionStringInput
+  prefs: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupPreferencesFilterInput]
+  or: [ModelSubscriptionGroupPreferencesFilterInput]
+}
+
+type ModelGroupTweetIgnoreConnection {
+  items: [GroupTweetIgnore]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTweetIgnoreFilterInput {
+  id: ModelIDInput
+  url: ModelStringInput
+  ignoredBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTweetIgnoreFilterInput]
+  or: [ModelGroupTweetIgnoreFilterInput]
+  not: ModelGroupTweetIgnoreFilterInput
+}
+
+input ModelGroupTweetIgnoreConditionInput {
+  url: ModelStringInput
+  ignoredBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTweetIgnoreConditionInput]
+  or: [ModelGroupTweetIgnoreConditionInput]
+  not: ModelGroupTweetIgnoreConditionInput
+}
+
+input CreateGroupTweetIgnoreInput {
+  id: ID
+  url: String!
+  ignoredBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  scope: String!
+  _version: Int
+}
+
+input UpdateGroupTweetIgnoreInput {
+  id: ID!
+  url: String
+  ignoredBy: String
+  tweetId: String
+  ownerGroups: [String]
+  scope: String
+  _version: Int
+}
+
+input DeleteGroupTweetIgnoreInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTweetIgnoreFilterInput {
+  id: ModelSubscriptionIDInput
+  url: ModelSubscriptionStringInput
+  ignoredBy: ModelSubscriptionStringInput
+  tweetId: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  scope: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTweetIgnoreFilterInput]
+  or: [ModelSubscriptionGroupTweetIgnoreFilterInput]
+}
+
+type ModelGroupTweetAnnotationsConnection {
+  items: [GroupTweetAnnotations]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTweetAnnotationsFilterInput {
+  id: ModelIDInput
+  url: ModelStringInput
+  annotatedBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  annotations: ModelStringInput
+  and: [ModelGroupTweetAnnotationsFilterInput]
+  or: [ModelGroupTweetAnnotationsFilterInput]
+  not: ModelGroupTweetAnnotationsFilterInput
+}
+
+input ModelGroupTweetAnnotationsConditionInput {
+  url: ModelStringInput
+  annotatedBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  annotations: ModelStringInput
+  and: [ModelGroupTweetAnnotationsConditionInput]
+  or: [ModelGroupTweetAnnotationsConditionInput]
+  not: ModelGroupTweetAnnotationsConditionInput
+}
+
+input CreateGroupTweetAnnotationsInput {
+  id: ID
+  url: String!
+  annotatedBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  annotations: AWSJSON
+  _version: Int
+}
+
+input UpdateGroupTweetAnnotationsInput {
+  id: ID!
+  url: String
+  annotatedBy: String
+  tweetId: String
+  ownerGroups: [String]
+  annotations: AWSJSON
+  _version: Int
+}
+
+input DeleteGroupTweetAnnotationsInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTweetAnnotationsFilterInput {
+  id: ModelSubscriptionIDInput
+  url: ModelSubscriptionStringInput
+  annotatedBy: ModelSubscriptionStringInput
+  tweetId: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  annotations: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTweetAnnotationsFilterInput]
+  or: [ModelSubscriptionGroupTweetAnnotationsFilterInput]
+}
+
+type ModelGroupTwitterUserIgnoreConnection {
+  items: [GroupTwitterUserIgnore]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTwitterUserIgnoreFilterInput {
+  id: ModelIDInput
+  twitterScreenName: ModelStringInput
+  ignoredBy: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTwitterUserIgnoreFilterInput]
+  or: [ModelGroupTwitterUserIgnoreFilterInput]
+  not: ModelGroupTwitterUserIgnoreFilterInput
+}
+
+input ModelGroupTwitterUserIgnoreConditionInput {
+  twitterScreenName: ModelStringInput
+  ignoredBy: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTwitterUserIgnoreConditionInput]
+  or: [ModelGroupTwitterUserIgnoreConditionInput]
+  not: ModelGroupTwitterUserIgnoreConditionInput
+}
+
+input CreateGroupTwitterUserIgnoreInput {
+  id: ID
+  twitterScreenName: String!
+  ignoredBy: String!
+  ownerGroups: [String]
+  scope: String!
+  _version: Int
+}
+
+input UpdateGroupTwitterUserIgnoreInput {
+  id: ID!
+  twitterScreenName: String
+  ignoredBy: String
+  ownerGroups: [String]
+  scope: String
+  _version: Int
+}
+
+input DeleteGroupTwitterUserIgnoreInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTwitterUserIgnoreFilterInput {
+  id: ModelSubscriptionIDInput
+  twitterScreenName: ModelSubscriptionStringInput
+  ignoredBy: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  scope: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTwitterUserIgnoreFilterInput]
+  or: [ModelSubscriptionGroupTwitterUserIgnoreFilterInput]
+}
+

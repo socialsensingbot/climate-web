@@ -1,34 +1,34 @@
 export type AmplifyDependentResourcesAttributes = {
-    "auth": {
-        "socialsensingf07a871c": {
-            "IdentityPoolId": "string",
-            "IdentityPoolName": "string",
-            "UserPoolId": "string",
-            "UserPoolArn": "string",
-            "UserPoolName": "string",
-            "AppClientIDWeb": "string",
-            "AppClientID": "string",
-            "CreatedSNSRole": "string"
-        },
-        "userPoolGroups": {
-            "metofficeGroupRole": "string",
-            "demoGroupRole": "string",
-            "socialsensingGroupRole": "string",
-            "testuserGroupRole": "string",
-            "cypressAGroupRole": "string",
-            "cypressBGroupRole": "string"
-        }
-    },
-    "storage": {
-        "jsonstorage": {
-            "BucketName": "string",
-            "Region": "string"
-        }
-    },
-    "api": {
-        "socialsensing": {
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        }
+  "api": {
+    "climate": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string"
     }
+  },
+  "auth": {
+    "climate0ed6d1fc": {
+      "AppClientID": "string",
+      "AppClientIDWeb": "string",
+      "IdentityPoolId": "string",
+      "IdentityPoolName": "string",
+      "UserPoolArn": "string",
+      "UserPoolId": "string",
+      "UserPoolName": "string"
+    }
+  },
+  "function": {
+    "climate5cfc21a1CustomMessage": {
+      "Arn": "string",
+      "LambdaExecutionRole": "string",
+      "LambdaExecutionRoleArn": "string",
+      "Name": "string",
+      "Region": "string"
+    }
+  },
+  "storage": {
+    "jsonstorage": {
+      "BucketName": "string",
+      "Region": "string"
+    }
+  }
 }

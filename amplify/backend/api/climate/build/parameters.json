@@ -1,0 +1,13 @@
+{
+    "AppSyncApiName": "climate",
+    "DynamoDBBillingMode": "PAY_PER_REQUEST",
+    "DynamoDBEnableServerSideEncryption": false,
+    "AuthCognitoUserPoolId": {
+        "Fn::GetAtt": [
+            "authclimate0ed6d1fc",
+            "Outputs.UserPoolId"
+        ]
+    },
+    "S3DeploymentBucket": "amplify-climate-dev-191354-deployment",
+    "S3DeploymentRootKey": "amplify-appsync-files/c38a4448147fa13e2df03641363068ce8e1c27d3"
+}

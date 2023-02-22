@@ -1,10 +1,10 @@
 {
-  "AppSyncApiName": "socialsensing",
+  "AppSyncApiName": "climate",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": "false",
+  "DynamoDBEnableServerSideEncryption": false,
   "AuthCognitoUserPoolId": {
     "Fn::GetAtt": [
-      "authsocialsensingf07a871c",
+      "authclimate0ed6d1fc",
       "Outputs.UserPoolId"
     ]
   }

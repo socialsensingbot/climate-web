@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-climate-dev-191354-authRole",
+      "UnauthRoleArn": "arn:aws:iam::686957444051:role/amplify-climate-dev-191354-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::686957444051:role/amplify-climate-dev-191354-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-climate-dev-191354-deployment",
+      "UnauthRoleName": "amplify-climate-dev-191354-unauthRole",
+      "StackName": "amplify-climate-dev-191354",
+      "StackId": "arn:aws:cloudformation:eu-west-2:686957444051:stack/amplify-climate-dev-191354/0ea23600-b2e5-11ed-98ba-0a9f59aa71f6",
+      "AmplifyAppId": "d1ozf96chfutrg"
+    },
+    "categories": {
+      "auth": {
+        "climate0ed6d1fc": {}
+      },
+      "function": {
+        "climate5cfc21a1CustomMessage": {
+          "deploymentBucketName": "amplify-climate-dev-191354-deployment",
+          "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-786f37376b623347536a-build.zip"
+        }
+      },
+      "api": {
+        "climate": {}
+      },
+      "storage": {
+        "jsonstorage": {}
+      }
+    }
+  }
+}

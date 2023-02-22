@@ -4,50 +4,50 @@
 
 
 type UserPreferences @model @auth(rules: [{allow: owner,  operations: [create, update, delete, read]}]) {
-  id: ID!
-  owner: String
-  #  ignoreTweets: [TweetIgnore] @connection(name: "UserTweetIgnores")
-  #  ignorePeople: [TwitterUserIgnore] @connection(name: "UserTwitterUserIgnores")
-  prefs: AWSJSON
+    id: ID!
+    owner: String
+    #  ignoreTweets: [TweetIgnore] @connection(name: "UserTweetIgnores")
+    #  ignorePeople: [TwitterUserIgnore] @connection(name: "UserTwitterUserIgnores")
+    prefs: AWSJSON
 }
 
 type UserDashboard @model @auth(rules: [{allow: owner,  operations: [create, update, delete, read]}]) {
-  id: ID!
-  owner: String
-  #  ignoreTweets: [TweetIgnore] @connection(name: "UserTweetIgnores")
-  #  ignorePeople: [TwitterUserIgnore] @connection(name: "UserTwitterUserIgnores")
-  dashboard: String!
+    id: ID!
+    owner: String
+    #  ignoreTweets: [TweetIgnore] @connection(name: "UserTweetIgnores")
+    #  ignorePeople: [TwitterUserIgnore] @connection(name: "UserTwitterUserIgnores")
+    dashboard: String!
 }
 
 type GroupDashboard
 @model
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  group: String!
-  dashboard: String!
+    id: ID!
+    group: String!
+    dashboard: String!
 }
 
 type SavedGraph
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-id: ID!
-type:String!
-title: String!
-state: String!
-group: String
-owner: String
-createdAt: AWSDateTime
+    id: ID!
+    type:String!
+    title: String!
+    state: String!
+    group: String
+    owner: String
+    createdAt: AWSDateTime
 }
 
 type TextAutocomplete
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  type:String!
-  text: String!
-  group: String
-  owner: String
-  createdAt: AWSDateTime
+    id: ID!
+    type:String!
+    text: String!
+    group: String
+    owner: String
+    createdAt: AWSDateTime
 }
 
 
@@ -55,56 +55,56 @@ type TextAutocomplete
 type UserSession
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  fingerprint: String
-  client: AWSJSON
-  open: Boolean!
-  group: String!
-  owner: String
-  ttl: Int
-  createdAt: AWSDateTime
-  sessionId: String
+    id: ID!
+    fingerprint: String
+    client: AWSJSON
+    open: Boolean!
+    group: String!
+    owner: String
+    ttl: Int
+    createdAt: AWSDateTime
+    sessionId: String
 }
 
 type GroupPreferences
 @model
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  group: String!
-  prefs: AWSJSON
+    id: ID!
+    group: String!
+    prefs: AWSJSON
 }
 
 type GroupTweetIgnore
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  url: String!
-  ignoredBy: String!
-  tweetId: String!
-  ownerGroups: [String]
-  scope: String!
+    id: ID!
+    url: String!
+    ignoredBy: String!
+    tweetId: String!
+    ownerGroups: [String]
+    scope: String!
 }
 
 type GroupTweetAnnotations
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  url: String!
-  annotatedBy: String!
-  tweetId: String!
-  ownerGroups: [String]
-  annotations: AWSJSON
+    id: ID!
+    url: String!
+    annotatedBy: String!
+    tweetId: String!
+    ownerGroups: [String]
+    annotations: AWSJSON
 }
 
 
 type GroupTwitterUserIgnore
 @model(timestamps: {createdAt: "createdAt", updatedAt: "updatedAt"})
 @auth(rules: [{allow: private}]) {
-  id: ID!
-  twitterScreenName: String!
-  ignoredBy: String!
-  ownerGroups: [String]
-  scope: String!
+    id: ID!
+    twitterScreenName: String!
+    ignoredBy: String!
+    ownerGroups: [String]
+    scope: String!
 }
 
 #type TweetIgnore @model @auth(rules: [{allow: private}]) {
