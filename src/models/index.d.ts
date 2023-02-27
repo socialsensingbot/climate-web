@@ -1,106 +1,343 @@
-import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
+import { ModelInit, MutableModel, __modelMeta__, ManagedIdentifier } from "@aws-amplify/datastore";
+// @ts-ignore
+import { LazyLoading, LazyLoadingDisabled } from "@aws-amplify/datastore";
 
 
 
 
 
-export declare class UserPreferences {
+type EagerUserPreferences = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserPreferences, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
-  readonly owner?: string;
-  readonly prefs?: string;
-  constructor(init: ModelInit<UserPreferences>);
-  static copyOf(source: UserPreferences, mutator: (draft: MutableModel<UserPreferences>) => MutableModel<UserPreferences> | void): UserPreferences;
+  readonly owner?: string | null;
+  readonly prefs?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class UserDashboard {
+type LazyUserPreferences = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserPreferences, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
-  readonly owner?: string;
+  readonly owner?: string | null;
+  readonly prefs?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type UserPreferences = LazyLoading extends LazyLoadingDisabled ? EagerUserPreferences : LazyUserPreferences
+
+export declare const UserPreferences: (new (init: ModelInit<UserPreferences>) => UserPreferences) & {
+  copyOf(source: UserPreferences, mutator: (draft: MutableModel<UserPreferences>) => MutableModel<UserPreferences> | void): UserPreferences;
+}
+
+type EagerUserDashboard = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserDashboard, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly owner?: string | null;
   readonly dashboard: string;
-  constructor(init: ModelInit<UserDashboard>);
-  static copyOf(source: UserDashboard, mutator: (draft: MutableModel<UserDashboard>) => MutableModel<UserDashboard> | void): UserDashboard;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class GroupDashboard {
+type LazyUserDashboard = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserDashboard, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly owner?: string | null;
+  readonly dashboard: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type UserDashboard = LazyLoading extends LazyLoadingDisabled ? EagerUserDashboard : LazyUserDashboard
+
+export declare const UserDashboard: (new (init: ModelInit<UserDashboard>) => UserDashboard) & {
+  copyOf(source: UserDashboard, mutator: (draft: MutableModel<UserDashboard>) => MutableModel<UserDashboard> | void): UserDashboard;
+}
+
+type EagerGroupDashboard = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupDashboard, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
   readonly group: string;
   readonly dashboard: string;
-  constructor(init: ModelInit<GroupDashboard>);
-  static copyOf(source: GroupDashboard, mutator: (draft: MutableModel<GroupDashboard>) => MutableModel<GroupDashboard> | void): GroupDashboard;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class SavedGraph {
+type LazyGroupDashboard = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupDashboard, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly group: string;
+  readonly dashboard: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type GroupDashboard = LazyLoading extends LazyLoadingDisabled ? EagerGroupDashboard : LazyGroupDashboard
+
+export declare const GroupDashboard: (new (init: ModelInit<GroupDashboard>) => GroupDashboard) & {
+  copyOf(source: GroupDashboard, mutator: (draft: MutableModel<GroupDashboard>) => MutableModel<GroupDashboard> | void): GroupDashboard;
+}
+
+type EagerSavedGraph = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<SavedGraph, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
   readonly id: string;
   readonly type: string;
   readonly title: string;
   readonly state: string;
-  readonly group?: string;
-  readonly owner?: string;
-  readonly createdAt?: string;
-  constructor(init: ModelInit<SavedGraph>);
-  static copyOf(source: SavedGraph, mutator: (draft: MutableModel<SavedGraph>) => MutableModel<SavedGraph> | void): SavedGraph;
+  readonly group?: string | null;
+  readonly owner?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class TextAutocomplete {
+type LazySavedGraph = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<SavedGraph, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
+  readonly id: string;
+  readonly type: string;
+  readonly title: string;
+  readonly state: string;
+  readonly group?: string | null;
+  readonly owner?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type SavedGraph = LazyLoading extends LazyLoadingDisabled ? EagerSavedGraph : LazySavedGraph
+
+export declare const SavedGraph: (new (init: ModelInit<SavedGraph>) => SavedGraph) & {
+  copyOf(source: SavedGraph, mutator: (draft: MutableModel<SavedGraph>) => MutableModel<SavedGraph> | void): SavedGraph;
+}
+
+type EagerTextAutocomplete = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TextAutocomplete, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
   readonly id: string;
   readonly type: string;
   readonly text: string;
-  readonly group?: string;
-  readonly owner?: string;
-  readonly createdAt?: string;
-  constructor(init: ModelInit<TextAutocomplete>);
-  static copyOf(source: TextAutocomplete, mutator: (draft: MutableModel<TextAutocomplete>) => MutableModel<TextAutocomplete> | void): TextAutocomplete;
+  readonly group?: string | null;
+  readonly owner?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class UserSession {
+type LazyTextAutocomplete = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<TextAutocomplete, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
   readonly id: string;
-  readonly fingerprint?: string;
-  readonly client?: string;
+  readonly type: string;
+  readonly text: string;
+  readonly group?: string | null;
+  readonly owner?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type TextAutocomplete = LazyLoading extends LazyLoadingDisabled ? EagerTextAutocomplete : LazyTextAutocomplete
+
+export declare const TextAutocomplete: (new (init: ModelInit<TextAutocomplete>) => TextAutocomplete) & {
+  copyOf(source: TextAutocomplete, mutator: (draft: MutableModel<TextAutocomplete>) => MutableModel<TextAutocomplete> | void): TextAutocomplete;
+}
+
+type EagerUserSession = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserSession, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
+  readonly id: string;
+  readonly fingerprint?: string | null;
+  readonly client?: string | null;
   readonly open: boolean;
   readonly group: string;
-  readonly owner?: string;
-  readonly ttl?: number;
-  readonly createdAt?: string;
-  readonly sessionId?: string;
-  constructor(init: ModelInit<UserSession>);
-  static copyOf(source: UserSession, mutator: (draft: MutableModel<UserSession>) => MutableModel<UserSession> | void): UserSession;
+  readonly owner?: string | null;
+  readonly ttl?: number | null;
+  readonly createdAt?: string | null;
+  readonly sessionId?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class GroupPreferences {
+type LazyUserSession = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<UserSession, 'id'>;
+    readOnlyFields: 'updatedAt';
+  };
+  readonly id: string;
+  readonly fingerprint?: string | null;
+  readonly client?: string | null;
+  readonly open: boolean;
+  readonly group: string;
+  readonly owner?: string | null;
+  readonly ttl?: number | null;
+  readonly createdAt?: string | null;
+  readonly sessionId?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type UserSession = LazyLoading extends LazyLoadingDisabled ? EagerUserSession : LazyUserSession
+
+export declare const UserSession: (new (init: ModelInit<UserSession>) => UserSession) & {
+  copyOf(source: UserSession, mutator: (draft: MutableModel<UserSession>) => MutableModel<UserSession> | void): UserSession;
+}
+
+type EagerGroupPreferences = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupPreferences, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
   readonly group: string;
-  readonly prefs?: string;
-  constructor(init: ModelInit<GroupPreferences>);
-  static copyOf(source: GroupPreferences, mutator: (draft: MutableModel<GroupPreferences>) => MutableModel<GroupPreferences> | void): GroupPreferences;
+  readonly prefs?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class GroupTweetIgnore {
+type LazyGroupPreferences = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupPreferences, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly group: string;
+  readonly prefs?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type GroupPreferences = LazyLoading extends LazyLoadingDisabled ? EagerGroupPreferences : LazyGroupPreferences
+
+export declare const GroupPreferences: (new (init: ModelInit<GroupPreferences>) => GroupPreferences) & {
+  copyOf(source: GroupPreferences, mutator: (draft: MutableModel<GroupPreferences>) => MutableModel<GroupPreferences> | void): GroupPreferences;
+}
+
+type EagerGroupTweetIgnore = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTweetIgnore, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
   readonly url: string;
   readonly ignoredBy: string;
   readonly tweetId: string;
-  readonly ownerGroups?: (string | null)[];
+  readonly ownerGroups?: (string | null)[] | null;
   readonly scope: string;
-  constructor(init: ModelInit<GroupTweetIgnore>);
-  static copyOf(source: GroupTweetIgnore, mutator: (draft: MutableModel<GroupTweetIgnore>) => MutableModel<GroupTweetIgnore> | void): GroupTweetIgnore;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class GroupTweetAnnotations {
+type LazyGroupTweetIgnore = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTweetIgnore, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly url: string;
+  readonly ignoredBy: string;
+  readonly tweetId: string;
+  readonly ownerGroups?: (string | null)[] | null;
+  readonly scope: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type GroupTweetIgnore = LazyLoading extends LazyLoadingDisabled ? EagerGroupTweetIgnore : LazyGroupTweetIgnore
+
+export declare const GroupTweetIgnore: (new (init: ModelInit<GroupTweetIgnore>) => GroupTweetIgnore) & {
+  copyOf(source: GroupTweetIgnore, mutator: (draft: MutableModel<GroupTweetIgnore>) => MutableModel<GroupTweetIgnore> | void): GroupTweetIgnore;
+}
+
+type EagerGroupTweetAnnotations = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTweetAnnotations, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
   readonly url: string;
   readonly annotatedBy: string;
   readonly tweetId: string;
-  readonly ownerGroups?: (string | null)[];
-  readonly annotations?: string;
-  constructor(init: ModelInit<GroupTweetAnnotations>);
-  static copyOf(source: GroupTweetAnnotations, mutator: (draft: MutableModel<GroupTweetAnnotations>) => MutableModel<GroupTweetAnnotations> | void): GroupTweetAnnotations;
+  readonly ownerGroups?: (string | null)[] | null;
+  readonly annotations?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
 }
 
-export declare class GroupTwitterUserIgnore {
+type LazyGroupTweetAnnotations = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTweetAnnotations, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly url: string;
+  readonly annotatedBy: string;
+  readonly tweetId: string;
+  readonly ownerGroups?: (string | null)[] | null;
+  readonly annotations?: string | null;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type GroupTweetAnnotations = LazyLoading extends LazyLoadingDisabled ? EagerGroupTweetAnnotations : LazyGroupTweetAnnotations
+
+export declare const GroupTweetAnnotations: (new (init: ModelInit<GroupTweetAnnotations>) => GroupTweetAnnotations) & {
+  copyOf(source: GroupTweetAnnotations, mutator: (draft: MutableModel<GroupTweetAnnotations>) => MutableModel<GroupTweetAnnotations> | void): GroupTweetAnnotations;
+}
+
+type EagerGroupTwitterUserIgnore = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTwitterUserIgnore, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
   readonly id: string;
   readonly twitterScreenName: string;
   readonly ignoredBy: string;
-  readonly ownerGroups?: (string | null)[];
+  readonly ownerGroups?: (string | null)[] | null;
   readonly scope: string;
-  constructor(init: ModelInit<GroupTwitterUserIgnore>);
-  static copyOf(source: GroupTwitterUserIgnore, mutator: (draft: MutableModel<GroupTwitterUserIgnore>) => MutableModel<GroupTwitterUserIgnore> | void): GroupTwitterUserIgnore;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+type LazyGroupTwitterUserIgnore = {
+  readonly [__modelMeta__]: {
+    identifier: ManagedIdentifier<GroupTwitterUserIgnore, 'id'>;
+    readOnlyFields: 'createdAt' | 'updatedAt';
+  };
+  readonly id: string;
+  readonly twitterScreenName: string;
+  readonly ignoredBy: string;
+  readonly ownerGroups?: (string | null)[] | null;
+  readonly scope: string;
+  readonly createdAt?: string | null;
+  readonly updatedAt?: string | null;
+}
+
+export declare type GroupTwitterUserIgnore = LazyLoading extends LazyLoadingDisabled ? EagerGroupTwitterUserIgnore : LazyGroupTwitterUserIgnore
+
+export declare const GroupTwitterUserIgnore: (new (init: ModelInit<GroupTwitterUserIgnore>) => GroupTwitterUserIgnore) & {
+  copyOf(source: GroupTwitterUserIgnore, mutator: (draft: MutableModel<GroupTwitterUserIgnore>) => MutableModel<GroupTwitterUserIgnore> | void): GroupTwitterUserIgnore;
 }
