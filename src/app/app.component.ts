@@ -145,6 +145,7 @@ export class AppComponent {
                         return;
                     }
 
+                    await this.pref.waitUntilReady();
                     this._adapter.setLocale(this.pref.combined.locale);
                     try {
                         await this._session.open(userInfo);

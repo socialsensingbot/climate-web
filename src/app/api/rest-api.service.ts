@@ -14,6 +14,7 @@ import {timer} from "rxjs";
 import {LoadingProgressService} from "../services/loading-progress.service";
 import {sleep} from "../common";
 import {Storage} from "@aws-amplify/storage";
+import {HttpClient} from "@angular/common/http";
 
 const useLambda = false;
 
@@ -29,7 +30,7 @@ export class RESTDataAPIService {
     private lastCPMCount = 0;
 
     constructor(private _notify: NotificationService, private _ngZone: NgZone, private readonly cache: NgForageCache,
-                private _loading: LoadingProgressService) {
+                private _loading: LoadingProgressService, private http: HttpClient) {
         timer(0, 10000).subscribe(() => {
             if (this.lastCPMCount === 0) {
                 this.lastCPMCount = Date.now() - 10000;
@@ -41,57 +42,46 @@ export class RESTDataAPIService {
         });
     }
 
+
+    public async post(path: string, payload: any): Promise<any> {
+        return await this.http.post<any>("http://localhost:3000" + path, payload, {
+            headers: {
+                Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+            }
+        }).toPromise();
+    }
+
+    public async get(path: string, payload: any): Promise<any> {
+        return await this.http.get<any>("http://localhost:3000" + path, {
+            params: payload, headers: {
+                Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
+            }
+        }).toPromise();
+    }
+
     public async callQueryAPI(functionName: string, payload: any, cacheForSeconds: number = 60, interrupted: () => boolean): Promise<any> {
 
-        if (useLambda) {
-            log.debug("Calling " + functionName, payload);
-            return Auth.currentCredentials()
-                       .then(credentials => {
-                           const lambda = new Lambda({
-                                                         region:      "eu-west-2",
-                                                         credentials: Auth.essentialCredentials(credentials)
-                                                     });
-                           return new Promise<any>((resolve, reject) => lambda.invoke({
-                                                                                          FunctionName: functionName + "-" + environment.lamdaEnvironment,
-                                                                                          Payload:      JSON.stringify(
-                                                                                              payload),
-                                                                                      }, (err, data) => {
-                               if (err) {
-                                   this._notify.show("Error communicating with server");
-                                   log.error(err);
-                                   reject(err);
-                               } else {
-                                   log.debug(data);
-                                   resolve(JSON.parse(data.Payload.toString()));
-                               }
 
-                           }));
-                       });
-        } else {
-            const path = "/" + functionName + "/" + payload.name;
-            if (functionName === "query") {
-                const key = "rest:query/" + path + ":" + JSON.stringify(payload);
-                const cachedItem = await this.cache.getCached(key);
-                if (cacheForSeconds > 0 && cachedItem && cachedItem.hasData && !cachedItem.expired) {
-                    log.debug("Value for " + key + "in cache");
-                    // log.debug("Value for " + key + " was " + JSON.stringify(cachedItem.data));
-                    if (!environment.production) {
-                        // tslint:disable-next-line:no-console
-                        console.debug("Return cached item", JSON.stringify(cachedItem));
-                    }
-                    return cachedItem.data;
-                } else {
-                    log.debug("Value for " + key + " not in cache");
-                    return await this.callAPIInternal(path, payload, cacheForSeconds, key, false, true, false, interrupted);
+        const path = "/" + functionName + "/" + payload.name;
+        if (functionName === "query") {
+            const key = "rest:query/" + path + ":" + JSON.stringify(payload);
+            const cachedItem = await this.cache.getCached(key);
+            if (cacheForSeconds > 0 && cachedItem && cachedItem.hasData && !cachedItem.expired) {
+                log.debug("Value for " + key + "in cache");
+                // log.debug("Value for " + key + " was " + JSON.stringify(cachedItem.data));
+                if (!environment.production) {
+                    // tslint:disable-next-line:no-console
+                    console.debug("Return cached item", JSON.stringify(cachedItem));
                 }
+                return cachedItem.data;
             } else {
-                return await API.get("query", path, {
-                    headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
-                    }
-                });
+                log.debug("Value for " + key + " not in cache");
+                return await this.callAPIInternal(path, payload, cacheForSeconds, key, false, true, false, interrupted);
             }
+        } else {
+            return await this.get(path, payload);
         }
+
     }
 
 
@@ -239,21 +229,10 @@ export class RESTDataAPIService {
                 return null;
             }
             if (useGet) {
-                response = API.get("query", fullPath, {
-                    queryStringParameters: payload,
-                    headers:               {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
-                    },
-
-                });
+                response = this.get(fullPath, payload);
             } else {
-                response = API.post("query", fullPath, {
-                    body:    payload,
-                    headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
-                    },
+                response = this.post(fullPath, payload);
 
-                });
             }
             const cacheInMillis: number = cacheForSeconds * 1000 * (1 + Math.random() / 10);
             try {
@@ -285,6 +264,7 @@ export class RESTDataAPIService {
                 } else {
                     log.debug("Synchronous response back from API");
                     s3Data = await response;
+                    log.debug("Synchronous response back from API, data was", s3Data);
                 }
                 if (typeof s3Data !== "undefined") {
                     // tslint:disable-next-line:no-console
@@ -344,21 +324,9 @@ export class RESTDataAPIService {
                 return null;
             }
             if (useGet) {
-                response = API.get("query", fullPath, {
-                    queryStringParameters: payload,
-                    headers:               {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
-                    },
-
-                });
+                response = this.get(fullPath, payload);
             } else {
-                response = API.post("query", fullPath, {
-                    body:    payload,
-                    headers: {
-                        Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`,
-                    },
-
-                });
+                response = this.post(fullPath, payload);
             }
             const cacheInMillis: number = cacheForSeconds * 1000 * (1 + Math.random() / 10);
             try {
