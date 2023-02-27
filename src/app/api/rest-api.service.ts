@@ -210,7 +210,6 @@ export class RESTDataAPIService {
                                   useGet = false, retry = true, showWaitingSpinner = false,
                                   interrupted: () => boolean): Promise<Promise<any>> {
         this.calls++;
-        payload.async_response = true;
         payload.client_version = environment.name + "-" + environment.version;
         // if (this.callsPerMinute > environment.maxCallsPerMinute) {
         //     console.error("Excessive api calls per minute: " + this.callsPerMinute);
@@ -237,35 +236,10 @@ export class RESTDataAPIService {
             const cacheInMillis: number = cacheForSeconds * 1000 * (1 + Math.random() / 10);
             try {
                 let s3Data;
-                if ((await response).__async_response__) {
-                    log.debug("Asynchronous response back from API, polling ...");
-                    let pollCount = 0;
-                    const responseKey: string = (await response).key;
-                    while (pollCount++ < 50) {
-                        await sleep(200);
-                        try {
-                            s3Data = await Storage.get("api/" + responseKey + ".gz.json", {download: true,});
-                            const body: any = JSON.parse(await s3Data.Body.text());
-                            log.debug("Result acquired ", body);
-                            this._loading.hideIndeterminateSpinner();
-                            if (cacheForSeconds > 0) {
-                                await this.cache.setCached(key, body.data, cacheInMillis);
-                            }
-                            return body.data;
-                        } catch (e) {
-                            log.verbose(e);
-                            this._loading.showIndeterminateSpinner();
-                            log.debug("Result not acquired ");
-                            await sleep(1000 + pollCount * 200);
-                        }
-                    }
-                    this._loading.hideIndeterminateSpinner();
-                    return null;
-                } else {
-                    log.debug("Synchronous response back from API");
-                    s3Data = await response;
-                    log.debug("Synchronous response back from API, data was", s3Data);
-                }
+
+                s3Data = await response;
+                log.debug("Synchronous response back from API, data was", s3Data);
+
                 if (typeof s3Data !== "undefined") {
                     // tslint:disable-next-line:no-console
                     if (!environment.production) {
