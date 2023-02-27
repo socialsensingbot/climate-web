@@ -28,7 +28,7 @@
             "@aws-sdk/util-create-request"
           ],
           "options": {
-            "outputPath": "dist/frontend",
+            "outputPath": "dist/climate-web",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -151,22 +151,22 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "climate-web:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "frontend:build:production"
+              "browserTarget": "climate-web:build:production"
             },
             "hmr": {
               "hmr": true,
-              "browserTarget": "frontend:build:hmr"
+              "browserTarget": "climate-web:build:hmr"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "frontend:build"
+            "browserTarget": "climate-web:build"
           }
         },
         "test": {
@@ -204,18 +204,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "frontend:serve"
+            "devServerTarget": "climate-web:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "frontend:serve:production"
+              "devServerTarget": "climate-web:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "frontend",
+  "defaultProject": "climate-web",
   "cli": {
     "analytics": "da10fb47-f421-4ebe-874d-0500dac86922"
   }
