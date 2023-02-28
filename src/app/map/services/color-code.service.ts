@@ -26,7 +26,7 @@ export function getColor(values, colors, d) {
 export class ColorCodeService {
 
     public colorData: ColorData = {
-        exceedance: {values: [5, 2.5, 1, 0.5], colors: ["#FEE5D9", "#FCAE91", "#FB6A4A", "#DE2D26", "#A50F15"]},
+        exceedance: {values: [4, 3, 2, 1], colors: [ "#A50F15", "#DE2D26", "#FB6A4A" , "#FCAE91", "#FEE5D9"]},
         count:      {values: [150, 50, 20, 10], colors: ["#045A8D", "#2B8CBE", "#74A9CF", "#BDC9E1", "#F1EEF6"]}
     };
 
