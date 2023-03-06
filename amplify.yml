@@ -7,23 +7,16 @@ backend:
     build:
       commands:
         - '# Execute Amplify CLI with the helper script'
-        - wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x ./jq && mv jq ./bin
-        - apt-get install -y docker
-        - npm install -g typescript
-        - chmod 755 ./bin/*
         - ./bin/backend-deploy.sh
 frontend:
   phases:
     preBuild:
       commands:
         - npm ci --legacy-peer-deps
-        - mkdir -p dist/frontend
+        - mkdir -p dist/climate-web
     build:
       commands:
         - ./bin/build.sh
-        - echo $GITHUB_ACCESS_TOKEN | docker login ghcr.io -u neilellis --password-stdin
-        - docker build -t ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH .
-        - docker push ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH
   artifacts:
     baseDirectory: dist/climate-web
     files:

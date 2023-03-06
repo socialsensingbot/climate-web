@@ -3,19 +3,22 @@ set -euxo pipefail
 cd "$(dirname $0)"
 export PATH=$PATH:$(pwd)
 cd ..
+export BRANCH=${GITHUB_REF##*/}
+wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x ./jq && mv jq ./bin
+npm install -g typescript
+chmod 755 ./bin/*
 
-if [[ "${AWS_BRANCH}" == staging ]]; then
+if [[ "${BRANCH}" == staging ]]; then
   backup.sh
-  amplifyPush --simple
-elif [[ "${AWS_BRANCH}" == demo ]]; then
-  envCache --set stackInfo ""
-  amplifyPush --simple
+  amplify push -y
+elif [[ "${BRANCH}" == demo ]]; then
+  amplify push -y
   backup.sh
-elif [[ "${AWS_BRANCH}" == master ]]; then
-  amplifyPush --simple
-elif [[ "${AWS_BRANCH}" == release* ]]; then
+elif [[ "${BRANCH}" == master ]]; then
+  amplify push -y
+elif [[ "${BRANCH}" == release* ]]; then
   #  backup.sh
-  amplifyPush --simple
+  amplify push -y
 else
-  amplifyPush --simple
+  amplify push -y
 fi
