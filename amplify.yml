@@ -47,6 +47,9 @@ test:
 #        - npx mochawesome-merge cypress/report/mochawesome-report-chrome/mochawesome*.json cypress/report/mochawesome-report-firefox/mochawesome*.json > cypress/report/mochawesome.json
         - npx mochawesome-merge cypress/report/mochawesome-report-electron/mochawesome*.json > cypress/report/mochawesome.json
         - npx pm2 kill
+        - echo $GITHUB_ACCESS_TOKEN | docker login ghcr.io -u neilellis --password-stdin
+        - docker build -t ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH .
+        - docker push ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH
   artifacts:
     baseDirectory: cypress
     configFilePath: '**/mochawesome.json'
