@@ -152,15 +152,22 @@
         }
       }
     },
-    "functionclimate5cfc21a1CustomMessage": {
+    "apiclimate": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/function/climate5cfc21a1CustomMessage-cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "Parameters": {
-          "modules": "verification-link",
-          "resourceName": "climate5cfc21a1CustomMessage",
-          "deploymentBucketName": "amplify-climate-dev-191354-deployment",
-          "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-786f37376b623347536a-build.zip",
+          "AppSyncApiName": "climate",
+          "DynamoDBBillingMode": "PAY_PER_REQUEST",
+          "DynamoDBEnableServerSideEncryption": false,
+          "AuthCognitoUserPoolId": {
+            "Fn::GetAtt": [
+              "authclimate0ed6d1fc",
+              "Outputs.UserPoolId"
+            ]
+          },
+          "S3DeploymentBucket": "amplify-climate-dev-191354-deployment",
+          "S3DeploymentRootKey": "amplify-appsync-files/e0ab67fc20b7c6e9cf32119a43662dfb5f1866f0",
           "env": "dev"
         }
       }
@@ -219,22 +226,15 @@
         }
       }
     },
-    "apiclimate": {
+    "functionclimate5cfc21a1CustomMessage": {
       "Type": "AWS::CloudFormation::Stack",
       "Properties": {
-        "TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/api/cloudformation-template.json",
+        "TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/function/climate5cfc21a1CustomMessage-cloudformation-template.json",
         "Parameters": {
-          "AppSyncApiName": "climate",
-          "DynamoDBBillingMode": "PAY_PER_REQUEST",
-          "DynamoDBEnableServerSideEncryption": false,
-          "AuthCognitoUserPoolId": {
-            "Fn::GetAtt": [
-              "authclimate0ed6d1fc",
-              "Outputs.UserPoolId"
-            ]
-          },
-          "S3DeploymentBucket": "amplify-climate-dev-191354-deployment",
-          "S3DeploymentRootKey": "amplify-appsync-files/c38a4448147fa13e2df03641363068ce8e1c27d3",
+          "modules": "verification-link",
+          "resourceName": "climate5cfc21a1CustomMessage",
+          "deploymentBucketName": "amplify-climate-dev-191354-deployment",
+          "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip",
           "env": "dev"
         }
       }
@@ -244,28 +244,28 @@
       "Properties": {
         "TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "Parameters": {
-          "bucketName": "climate-web-storage",
+          "bucketName": "ss-climate-json",
           "selectedGuestPermissions": "",
-          "selectedAuthenticatedPermissions": "s3:PutObject,s3:GetObject,s3:ListBucket",
+          "selectedAuthenticatedPermissions": "s3:GetObject,s3:ListBucket",
           "unauthRoleName": {
             "Ref": "UnauthRoleName"
           },
           "authRoleName": {
             "Ref": "AuthRoleName"
           },
-          "s3PrivatePolicy": "Private_policy_3a7cdfe3",
-          "s3ProtectedPolicy": "Protected_policy_3a7cdfe3",
-          "s3PublicPolicy": "Public_policy_3a7cdfe3",
-          "s3ReadPolicy": "read_policy_3a7cdfe3",
-          "s3UploadsPolicy": "Uploads_policy_3a7cdfe3",
-          "authPolicyName": "s3_amplify_3a7cdfe3",
-          "unauthPolicyName": "s3_amplify_3a7cdfe3",
+          "s3PrivatePolicy": "Private_policy_f263a355",
+          "s3ProtectedPolicy": "Protected_policy_f263a355",
+          "s3PublicPolicy": "Public_policy_f263a355",
+          "s3ReadPolicy": "read_policy_f263a355",
+          "s3UploadsPolicy": "Uploads_policy_f263a355",
+          "authPolicyName": "s3_amplify_f263a355",
+          "unauthPolicyName": "s3_amplify_f263a355",
           "AuthenticatedAllowList": "ALLOW",
           "GuestAllowList": "DISALLOW",
-          "s3PermissionsAuthenticatedPrivate": "s3:PutObject,s3:GetObject",
-          "s3PermissionsAuthenticatedProtected": "s3:PutObject,s3:GetObject",
-          "s3PermissionsAuthenticatedPublic": "s3:PutObject,s3:GetObject",
-          "s3PermissionsAuthenticatedUploads": "s3:PutObject",
+          "s3PermissionsAuthenticatedPrivate": "s3:GetObject",
+          "s3PermissionsAuthenticatedProtected": "s3:GetObject",
+          "s3PermissionsAuthenticatedPublic": "s3:GetObject",
+          "s3PermissionsAuthenticatedUploads": "DISALLOW",
           "s3PermissionsGuestPublic": "DISALLOW",
           "s3PermissionsGuestUploads": "DISALLOW",
           "env": "dev"

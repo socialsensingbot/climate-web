@@ -19,7 +19,7 @@
       "function": {
         "climate5cfc21a1CustomMessage": {
           "deploymentBucketName": "amplify-climate-dev-191354-deployment",
-          "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-786f37376b623347536a-build.zip"
+          "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip"
         }
       },
       "api": {
