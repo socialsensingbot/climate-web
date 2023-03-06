@@ -58,12 +58,7 @@ jobs:
 
       - name: Deploy to Amplify
         run: |
-          docker run \
-            -v ~/.aws:/root/.aws
-            -v $(pwd):/app \
-            -w /app \
-            -e AMPLIFY_ENV=dev \
-            amazon/aws-cli amplify push --simple
+          docker run  -v ~/.aws:/root/.aws -v $(pwd):/app -w /app -e AMPLIFY_ENV=dev amazon/aws-cli amplify push --simple
 
       - name: Build
         run: |
