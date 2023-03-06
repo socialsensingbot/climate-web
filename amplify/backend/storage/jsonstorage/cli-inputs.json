@@ -1,0 +1,12 @@
+{
+  "resourceName": "jsonstorage",
+  "policyUUID": "f263a355",
+  "bucketName": "ss-climate-json",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

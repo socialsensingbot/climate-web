@@ -60,24 +60,6 @@
       "service": "Lambda"
     }
   },
-  "parameters": {
-    "AMPLIFY_function_climate5cfc21a1CustomMessage_deploymentBucketName": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "climate5cfc21a1CustomMessage"
-        }
-      ]
-    },
-    "AMPLIFY_function_climate5cfc21a1CustomMessage_s3Key": {
-      "usedBy": [
-        {
-          "category": "function",
-          "resourceName": "climate5cfc21a1CustomMessage"
-        }
-      ]
-    }
-  },
   "storage": {
     "jsonstorage": {
       "dependsOn": [],
