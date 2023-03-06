@@ -14,7 +14,7 @@ if [[ "${BRANCH}" == staging ]]; then
 elif [[ "${BRANCH}" == demo ]]; then
   amplify push -y
   backup.sh
-elif [[ "${BRANCH}" == master ]]; then
+elif [[ "${BRANCH}" == main ]]; then
   amplify push -y
 elif [[ "${BRANCH}" == release* ]]; then
   #  backup.sh

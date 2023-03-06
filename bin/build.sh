@@ -9,7 +9,7 @@ if [[ "${BRANCH}" == staging ]]; then
   npm run-script build-prod
 elif [[ "${BRANCH}" == demo ]]; then
   npm run-script build-demo
-elif [[ "${BRANCH}" == master ]]; then
+elif [[ "${BRANCH}" == main ]]; then
   npm run-script build-prod
 elif [[ "${BRANCH}" == test ]]; then
   npm run-script build-test
