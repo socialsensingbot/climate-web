@@ -57,10 +57,14 @@ jobs:
           echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
           echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
           echo "region=eu-west-2" >> ~/.aws/config
+          chmod 600 ~/.aws/config
           echo "[socialsensing]" > ~/.aws/credentials
           echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/credentials
           echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
           echo "region=eu-west-2" >> ~/.aws/credentials
+          chmod 600 ~/.aws/credentials
+          ls -la ~/.aws
+          ls -lad ~/.aws
 
       - name: Build
         run: |
