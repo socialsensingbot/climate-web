@@ -24,6 +24,8 @@ jobs:
       AWS_DEFAULT_REGION: eu-west-2
       AWS_DEFAULT_OUTPUT: json
       AWS_PROFILE: socialsensing
+      AWS_CONFIG_FILE: ~/.aws/config
+      AWS_SDK_LOAD_CONFIG: 1
     permissions:
       contents: read
       packages: write
