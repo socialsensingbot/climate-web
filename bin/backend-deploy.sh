@@ -6,7 +6,10 @@ cd ..
 export BRANCH=${GITHUB_REF##*/}
 wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x ./jq && mv jq ./bin
 npm install -g typescript
+amplify pull --appId d1ozf96chfutrg --envName dev
 amplify env checkout dev
+amplify codegen
+amplify push -y
 if [[ "${BRANCH}" == staging ]]; then
   backup.sh
   amplify push -y
