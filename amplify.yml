@@ -20,6 +20,9 @@ frontend:
     build:
       commands:
         - ./bin/build.sh
+        - echo $GITHUB_ACCESS_TOKEN | docker login ghcr.io -u neilellis --password-stdin
+        - docker build -t ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH .
+        - docker push ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH
   artifacts:
     baseDirectory: dist/frontend
     files:
