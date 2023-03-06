@@ -39,6 +39,11 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - run: npm install -g @aws-amplify/cli
 
       - name: Build
         run: |
