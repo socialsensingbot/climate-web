@@ -6,10 +6,12 @@ cd ..
 export BRANCH=${GITHUB_REF##*/}
 wget -O jq https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x ./jq && mv jq ./bin
 npm install -g typescript
-amplify pull --appId d1ozf96chfutrg --envName dev
-amplify env checkout dev
-amplify codegen
-amplify push -y
+AWS_APP_NAME=climate
+AWS_APP_ID=d1ozf96chfutrg
+AWS_APP_STAGE=dev
+amplify configure project -n $AWS_APP_NAME -i $AWS_APP_ID  -s $AWS_APP_STAGE
+amplify env checkout $AWS_APP_STAGE
+amplify pull --appId $AWS_APP_ID --envName $AWS_APP_STAGE
 if [[ "${BRANCH}" == staging ]]; then
   backup.sh
   amplify push -y
