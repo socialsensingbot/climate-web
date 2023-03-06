@@ -56,13 +56,9 @@ jobs:
           echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/credentials
           echo "region=eu-west-2" >> ~/.aws/credentials
 
-      - name: Deploy to Amplify
-        run: |
-          docker run  -v ~/.aws:/root/.aws -v $(pwd):/app -w /app -e AMPLIFY_ENV=dev amazon/aws-cli amplify push --simple
-
       - name: Build
         run: |
-          npm ci --legacy-peer-deps && mkdir -p dist/climate-web && ./bin/build.sh         
+          ./bin/backend-deploy.sh && npm ci --legacy-peer-deps && mkdir -p dist/climate-web && ./bin/build.sh         
 
       - name: Build and push Docker image
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
