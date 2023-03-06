@@ -62,7 +62,7 @@ jobs:
             -v ~/.aws:/root/.aws
             -v $(pwd):/app \
             -w /app \
-            -e AMPLIFY_ENV=$AMPLIFY_ENV \
+            -e AMPLIFY_ENV=dev \
             amazon/aws-cli amplify push --simple
 
       - name: Build
