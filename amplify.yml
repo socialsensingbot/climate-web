@@ -24,7 +24,7 @@ frontend:
         - docker build -t ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH .
         - docker push ghcr.io/socialsensingbot/climate-web:$AWS_BRANCH
   artifacts:
-    baseDirectory: dist/frontend
+    baseDirectory: dist/climate-web
     files:
       - '**/*'
   cache:
@@ -44,7 +44,7 @@ test:
         - wait-on http://localhost:4200
     test:
       commands:
-        - mkdir -p dist/frontend
+        - mkdir -p dist/climate-web
         - ./bin/ci-test.sh
     postTest:
       commands:
