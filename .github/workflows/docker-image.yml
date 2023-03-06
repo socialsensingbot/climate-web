@@ -55,8 +55,7 @@ jobs:
       - run : |
           mkdir -p ~/.aws
           echo "[default]" > ~/.aws/config
-          echo "aws_access_key_id=$AWS_ACCESS_KEY_ID" >> ~/.aws/config
-          echo "aws_secret_access_key=$AWS_SECRET_ACCESS_KEY" >> ~/.aws/config
+          echo "[profile socialsensing]" > ~/.aws/config
           echo "region=eu-west-2" >> ~/.aws/config
           chmod 600 ~/.aws/config
           echo "[socialsensing]" > ~/.aws/credentials
@@ -66,6 +65,8 @@ jobs:
           chmod 600 ~/.aws/credentials
           ls -la ~/.aws
           ls -lad ~/.aws
+          cat ~/.aws/config
+          cat ~/.aws/credentials
 
       - name: Build
         run: |
