@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.2.1",
-    "@angular/cli": "^11.2.14",
+    "@angular/cli": "^12.2.18",
     "@angular/compiler-cli": "^13.3.12",
     "@angular/language-service": "^13.3.12",
     "@angularclass/hmr": "^3.0.0",
@@ -86,7 +86,7 @@
     "jasmine-core": "^3.7.1",
     "jasmine-spec-reporter": "^6.0.0",
     "jsdiff": "^1.1.1",
-    "karma": "^5.2.3",
+    "karma": "^6.4.1",
     "karma-chrome-launcher": "^3.1.0",
     "karma-coverage-istanbul-reporter": "^3.0.2",
     "karma-jasmine": "^4.0.0",
