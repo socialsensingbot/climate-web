@@ -42,7 +42,7 @@ export class AnnotationService {
         log.debug("** Annotation Service Initializing **");
         this._userInfo = userInfo;
         this._observable = DataStore.observe(GroupTweetAnnotations,
-                                             q => q.ownerGroups("contains", this._pref.groups[0]));
+                                             q => q.ownerGroups.contains(this._pref.groups[0]));
 
         this._observable.subscribe(msg => {
             log.info("Annotation subscription message received", msg);
@@ -133,8 +133,8 @@ export class AnnotationService {
         try {
             delete this._cached[tweet.id];
             return await DataStore.delete(GroupTweetAnnotations,
-                                          q => q.tweetId("eq", tweet.id)
-                                                .ownerGroups("contains", this._pref.groups[0])
+                                          q => q.and(a=>[a.tweetId.eq(tweet.id),
+                                                a.ownerGroups.contains(this._pref.groups[0])])
             );
         } catch (e) {
             log.error(e);
@@ -147,7 +147,7 @@ export class AnnotationService {
 
     private async updateCache() {
         return await DataStore.query(GroupTweetAnnotations,
-                                     q => q.ownerGroups("contains", this._pref.groups[0]))
+                                     q => q.ownerGroups.contains(this._pref.groups[0]))
                               .then(result => {
                                   log.debug("Updated cache with", result);
                                   if (!result || result.length === 0) {

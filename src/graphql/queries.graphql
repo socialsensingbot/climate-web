@@ -435,3 +435,209 @@ query SyncGroupPreferences(
     startedAt
   }
 }
+query GetGroupTweetIgnore($id: ID!) {
+  getGroupTweetIgnore(id: $id) {
+    id
+    url
+    ignoredBy
+    tweetId
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListGroupTweetIgnores(
+  $filter: ModelGroupTweetIgnoreFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listGroupTweetIgnores(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      url
+      ignoredBy
+      tweetId
+      ownerGroups
+      scope
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncGroupTweetIgnores(
+  $filter: ModelGroupTweetIgnoreFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncGroupTweetIgnores(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      url
+      ignoredBy
+      tweetId
+      ownerGroups
+      scope
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetGroupTweetAnnotations($id: ID!) {
+  getGroupTweetAnnotations(id: $id) {
+    id
+    url
+    annotatedBy
+    tweetId
+    ownerGroups
+    annotations
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListGroupTweetAnnotations(
+  $filter: ModelGroupTweetAnnotationsFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listGroupTweetAnnotations(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      url
+      annotatedBy
+      tweetId
+      ownerGroups
+      annotations
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncGroupTweetAnnotations(
+  $filter: ModelGroupTweetAnnotationsFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncGroupTweetAnnotations(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      url
+      annotatedBy
+      tweetId
+      ownerGroups
+      annotations
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query GetGroupTwitterUserIgnore($id: ID!) {
+  getGroupTwitterUserIgnore(id: $id) {
+    id
+    twitterScreenName
+    ignoredBy
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+query ListGroupTwitterUserIgnores(
+  $filter: ModelGroupTwitterUserIgnoreFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listGroupTwitterUserIgnores(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+  ) {
+    items {
+      id
+      twitterScreenName
+      ignoredBy
+      ownerGroups
+      scope
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}
+query SyncGroupTwitterUserIgnores(
+  $filter: ModelGroupTwitterUserIgnoreFilterInput
+  $limit: Int
+  $nextToken: String
+  $lastSync: AWSTimestamp
+) {
+  syncGroupTwitterUserIgnores(
+    filter: $filter
+    limit: $limit
+    nextToken: $nextToken
+    lastSync: $lastSync
+  ) {
+    items {
+      id
+      twitterScreenName
+      ignoredBy
+      ownerGroups
+      scope
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+    nextToken
+    startedAt
+  }
+}

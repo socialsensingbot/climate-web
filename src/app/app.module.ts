@@ -38,7 +38,7 @@ import {DashboardComponent} from "./analytics/dashboard/dashboard.component";
 import {TimeSeriesChartComponent} from "./charts/timeseries-chart/timeseries-chart.component";
 import {BarChartComponent} from "./charts/bar-chart/bar-chart.component";
 import {PieChartComponent} from "./charts/pie-chart/pie-chart.component";
-import {AmplifyUIAngularModule} from "@aws-amplify/ui-angular";
+import {AmplifyAuthenticatorModule} from "@aws-amplify/ui-angular";
 import {TweetCopyDialogComponent} from "./map/twitter/tweet-list/tweet-copy-dialog/tweet-copy-dialog.component";
 import {StripHtmlPipe} from "./strip.pipe";
 import {TimeSeriesMultiChartComponent} from "./charts/timeseries-multi-chart/timeseries-multi-chart.component";
@@ -104,7 +104,7 @@ import {HistoricalDateRangeSliderComponent} from "./map/historical-date-range-sl
                   BrowserModule,
                   HttpClientModule,
                   BrowserAnimationsModule,
-                  AmplifyUIAngularModule,
+                  AmplifyAuthenticatorModule,
                   MaterialModule,
                   MatSidenavModule,
                   MatSliderModule,

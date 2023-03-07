@@ -84,7 +84,7 @@ export class DashboardService {
       this._groups = ["__invalid__"];
       return;
     } else {
-      const groupDash = await DataStore.query(GroupDashboard, q => q.group("eq", this._groups[0]));
+      const groupDash = await DataStore.query(GroupDashboard, q => q.group.eq(this._groups[0]));
       if (groupDash.length === 0) {
         log.debug("No existing dashboards.");
 
@@ -104,7 +104,7 @@ export class DashboardService {
 
     try {
       log.debug("Making sure storage is ready.");
-      const dashboard = await DataStore.query(UserDashboard, q => q.owner("eq", username));
+      const dashboard = await DataStore.query(UserDashboard, q => q.owner.eq(username));
       if (dashboard.length === 0) {
         log.debug("No existing user dashboards.");
 
@@ -133,7 +133,7 @@ export class DashboardService {
   public async persist() {
     const username = await this._prefs.username;
 
-    const userDash = await DataStore.query(UserDashboard, q => q.owner("eq", username));
+    const userDash = await DataStore.query(UserDashboard, q => q.owner.eq(username));
     if (userDash.length !== 1) {
       log.debug("Number of dashboards for user was " + userDash.length);
     }

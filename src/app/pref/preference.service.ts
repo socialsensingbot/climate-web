@@ -114,7 +114,7 @@ export class PreferenceService {
         log.debug(userInfo);
         try {
             log.debug("Making sure storage is ready.");
-            const pref = await DataStore.query(UserPreferences, q => q.owner("eq", userInfo.username));
+            const pref = await DataStore.query(UserPreferences, q => q.owner.eq(userInfo.username));
             if (!pref) {
                 log.debug("No existing preferences.");
                 this._preferences = await DataStore.save(new UserPreferences({owner: userInfo.username}));
@@ -133,7 +133,7 @@ export class PreferenceService {
                 this._groups = ["__invalid__"];
                 return;
             } else {
-                const groupPref = await DataStore.query(GroupPreferences, q => q.group("eq", this._groups[0]));
+                const groupPref = await DataStore.query(GroupPreferences, q => q.group.eq( this._groups[0]));
                 if (groupPref.length === 0) {
                     log.debug("No existing preferences.");
 
@@ -284,8 +284,7 @@ export class PreferenceService {
         const pageSize = 1000;
         while (safety-- > 0) {
             const groupTweetIgnores = await DataStore.query(GroupTweetIgnore,
-                                                            q => q.or(
-                                                                g => g.scope("eq", this.groupScope())),
+                                                            g => g.scope.eq(this.groupScope()),
                                                             {limit: pageSize, page});
             log.info(`Reading page ${page} of GroupTweetIgnore size was ${groupTweetIgnores.length}`);
             log.info(groupTweetIgnores);
@@ -304,7 +303,7 @@ export class PreferenceService {
         while (safety-- > 0) {
             log.info(`Reading page ${page} of GroupTwitterUserIgnore`);
             const groupUserIgnores = await DataStore.query(GroupTwitterUserIgnore,
-                                                           q => q.or(g => g.scope("eq", this.groupScope())),
+                                                           g => g.scope.eq(this.groupScope()),
                                                            {limit: 1000, page});
             this._twitterUserBlackList.push(...groupUserIgnores.map(i => i.twitterScreenName));
             if (groupUserIgnores.length === pageSize) {
@@ -389,8 +388,8 @@ export class PreferenceService {
         // #87 the value of the await needs to be in a temp variable
         const username = await this.username;
         const id = scope + ":" + tweet.sender;
-        const result = await DataStore.query(GroupTwitterUserIgnore, q => q.twitterScreenName("eq", tweet.sender)
-                                                                           .ownerGroups("contains", this._groups[0]));
+        const result = await DataStore.query(GroupTwitterUserIgnore, q => q.and(a => [a.twitterScreenName.eq(tweet.sender),
+                                                                                      a.ownerGroups.contains(this._groups[0])]));
         log.debug(result);
         if (result.length === 0) {
             await DataStore.save(new GroupTwitterUserIgnore(
@@ -419,8 +418,8 @@ export class PreferenceService {
 
         const username = await this.username;
         const id = scope + ":" + tweet.id;
-        const result = await DataStore.query(GroupTweetIgnore, q => q.tweetId("eq", tweet.sender)
-                                                                     .ownerGroups("contains", this._groups[0]));
+        const result = await DataStore.query(GroupTweetIgnore, q => q.and(a => [a.tweetId.eq(tweet.sender),
+                                                                                a.ownerGroups.contains(this._groups[0])]));
         log.debug(result);
         if (result.length === 0) {
             await DataStore.save(new GroupTweetIgnore(
@@ -448,7 +447,7 @@ export class PreferenceService {
         // this._twitterUserBlackList = this._twitterUserBlackList.filter(i => i !== tweet.sender);
         await this.username;
         await DataStore.delete(GroupTwitterUserIgnore,
-                               q => q.twitterScreenName("eq", tweet.sender).ownerGroups("contains", this._groups[0]));
+                               q => q.and(a=>[a.twitterScreenName.eq(tweet.sender),a.ownerGroups.contains(this._groups[0])]));
     }
 
     private async unignoreTweetForScope(tweet, scope: string) {
@@ -458,7 +457,7 @@ export class PreferenceService {
         }
         await this.username;
         await DataStore.delete(GroupTweetIgnore,
-                               q => q.tweetId("eq", tweet.id).ownerGroups("contains", this._groups[0]));
+                               q => q.and(a => [a.tweetId.eq(tweet.id), a.ownerGroups.contains(this._groups[0])]));
     }
 
     public featureSupported(feature: string): boolean {

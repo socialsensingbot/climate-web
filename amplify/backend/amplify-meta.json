@@ -42,8 +42,8 @@
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiclimate"
       },
-      "lastPushTimeStamp": "2023-03-07T16:45:13.468Z",
-      "lastPushDirHash": "evomFPjInYRnHeit/eNdQIviOKo="
+      "lastPushTimeStamp": "2023-03-07T17:52:43.989Z",
+      "lastPushDirHash": "dX/5kWeOUSnoj0h5jpAXdMB/M/Q="
     }
   },
   "auth": {
@@ -81,7 +81,7 @@
         "IdentityPoolName": "climate0ed6d1fc_identitypool_0ed6d1fc__dev",
         "UserPoolName": "climate0ed6d1fc_userpool_0ed6d1fc"
       },
-      "lastPushTimeStamp": "2023-03-07T16:45:13.468Z",
+      "lastPushTimeStamp": "2023-03-07T17:52:41.491Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/auth/climate0ed6d1fc-cloudformation-template.json",
         "logicalId": "authclimate0ed6d1fc"
@@ -101,7 +101,7 @@
         "Name": "climate5cfc21a1CustomMessage-dev",
         "LambdaExecutionRole": "climate5cfc21a1CustomMessage-dev"
       },
-      "lastPushTimeStamp": "2023-03-07T16:45:13.468Z",
+      "lastPushTimeStamp": "2023-03-07T17:52:41.492Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/function/climate5cfc21a1CustomMessage-cloudformation-template.json",
         "logicalId": "functionclimate5cfc21a1CustomMessage"
@@ -126,7 +126,7 @@
         "BucketName": "ss-climate-json191354-dev",
         "Region": "eu-west-2"
       },
-      "lastPushTimeStamp": "2023-03-07T16:45:13.468Z",
+      "lastPushTimeStamp": "2023-03-07T17:52:41.494Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagejsonstorage"

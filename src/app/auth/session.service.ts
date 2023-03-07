@@ -172,21 +172,21 @@ export class SessionService {
    * @param sessionToken a session token using our
    */
   private async listenForNewServerSessions(userInfo, sessionToken: string) {
-    return await DataStore.observe(UserSession, q => q.group("eq", this._pref.groups[0]).open("eq", true)).subscribe(msg => {
-      log.debug(msg.model, msg.opType, msg.element);
-      if (msg.element.owner === userInfo.username && msg.element.open === true) {
-        log.info(`New session detected for ${msg.element.owner}.`);
-        const sub = msg.element;
-        if (!sub.id) {
-          log.warn("Invalid id for sub", sub);
-        }
+    return DataStore.observe(UserSession, q => q.and(a=>[q.group.eq(this._pref.groups[0]),a.open.eq( true)])).subscribe(msg => {
+        log.debug(msg.model, msg.opType, msg.element);
+        if (msg.element.owner === userInfo.username && msg.element.open === true) {
+            log.info(`New session detected for ${msg.element.owner}.`);
+            const sub = msg.element;
+            if (!sub.id) {
+                log.warn("Invalid id for sub", sub);
+            }
 
-        if (this.session && sub.id && sub.id !== this.session.id) {
-          log.debug(`${sub.id} is not ${this.session.id}`);
-          log.debug(sub);
-          this.moreThanOneSession(this.session.createdAt < sub.createdAt);
+            if (this.session && sub.id && sub.id !== this.session.id) {
+                log.debug(`${sub.id} is not ${this.session.id}`);
+                log.debug(sub);
+                this.moreThanOneSession(this.session.createdAt < sub.createdAt);
+            }
         }
-      }
     });
 
   }
@@ -236,7 +236,7 @@ export class SessionService {
   }
 
   private async getSessionOrNull(): Promise<UserSession | null> {
-    const result = await DataStore.query(UserSession, q => q.sessionId("eq", this._sessionId));
+    const result = await DataStore.query(UserSession, q => q.sessionId.eq(this._sessionId));
     if (result.length === 0) {
       return null;
     } else {
@@ -292,7 +292,7 @@ export class SessionService {
     await this._pref.waitUntilReady();
     const group = this._pref.groups[0];
     const sessionItems = await DataStore.query(UserSession,
-                                               q => q.group("eq", group).open("eq", true));
+                                               q => q.and(a=> [a.group.eq(group),a.open.eq(true)]));
     log.info(`Currently ${sessionItems.length} active sessions for group ${group}.`);
     const userSessions = sessionItems.map(i => i.owner);
     const loggedInCount = new Set(userSessions).size;

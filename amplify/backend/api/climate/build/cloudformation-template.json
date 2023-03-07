@@ -997,6 +997,324 @@
                 "GraphQLAPITransformerSchema3CB2AE18"
             ]
         },
+        "GroupTweetIgnore": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "https://s3.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".",
+                            {
+                                "Ref": "AWS::URLSuffix"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "/stacks/GroupTweetIgnore.json"
+                        ]
+                    ]
+                },
+                "Parameters": {
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "DynamoDBEnablePointInTimeRecovery": {
+                        "Ref": "DynamoDBEnablePointInTimeRecovery"
+                    },
+                    "DynamoDBEnableServerSideEncryption": {
+                        "Ref": "DynamoDBEnableServerSideEncryption"
+                    },
+                    "referencetotransformerrootstackenv10C5A902Ref": {
+                        "Ref": "env"
+                    },
+                    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunctionB7FCA0A9": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunction806016FBFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunctionA4836BE3": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunction2467F089FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncF5145DC66": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncFunctionFA4554B4FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnA71C75397": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnAppSyncFunctionED020DAFFunctionId"
+                        ]
+                    }
+                }
+            },
+            "DependsOn": [
+                "GraphQLAPITransformerSchema3CB2AE18"
+            ]
+        },
+        "GroupTweetAnnotations": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "https://s3.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".",
+                            {
+                                "Ref": "AWS::URLSuffix"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "/stacks/GroupTweetAnnotations.json"
+                        ]
+                    ]
+                },
+                "Parameters": {
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "DynamoDBEnablePointInTimeRecovery": {
+                        "Ref": "DynamoDBEnablePointInTimeRecovery"
+                    },
+                    "DynamoDBEnableServerSideEncryption": {
+                        "Ref": "DynamoDBEnableServerSideEncryption"
+                    },
+                    "referencetotransformerrootstackenv10C5A902Ref": {
+                        "Ref": "env"
+                    },
+                    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunctionB7FCA0A9": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunction806016FBFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunctionA4836BE3": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunction2467F089FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncF5145DC66": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncFunctionFA4554B4FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnA71C75397": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnAppSyncFunctionED020DAFFunctionId"
+                        ]
+                    }
+                }
+            },
+            "DependsOn": [
+                "GraphQLAPITransformerSchema3CB2AE18"
+            ]
+        },
+        "GroupTwitterUserIgnore": {
+            "Type": "AWS::CloudFormation::Stack",
+            "Properties": {
+                "TemplateURL": {
+                    "Fn::Join": [
+                        "",
+                        [
+                            "https://s3.",
+                            {
+                                "Ref": "AWS::Region"
+                            },
+                            ".",
+                            {
+                                "Ref": "AWS::URLSuffix"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentBucket"
+                            },
+                            "/",
+                            {
+                                "Ref": "S3DeploymentRootKey"
+                            },
+                            "/stacks/GroupTwitterUserIgnore.json"
+                        ]
+                    ]
+                },
+                "Parameters": {
+                    "DynamoDBModelTableReadIOPS": {
+                        "Ref": "DynamoDBModelTableReadIOPS"
+                    },
+                    "DynamoDBModelTableWriteIOPS": {
+                        "Ref": "DynamoDBModelTableWriteIOPS"
+                    },
+                    "DynamoDBBillingMode": {
+                        "Ref": "DynamoDBBillingMode"
+                    },
+                    "DynamoDBEnablePointInTimeRecovery": {
+                        "Ref": "DynamoDBEnablePointInTimeRecovery"
+                    },
+                    "DynamoDBEnableServerSideEncryption": {
+                        "Ref": "DynamoDBEnableServerSideEncryption"
+                    },
+                    "referencetotransformerrootstackenv10C5A902Ref": {
+                        "Ref": "env"
+                    },
+                    "referencetotransformerrootstackGraphQLAPI20497F53ApiId": {
+                        "Fn::GetAtt": [
+                            "GraphQLAPI",
+                            "ApiId"
+                        ]
+                    },
+                    "referencetotransformerrootstackS3DeploymentBucket7592718ARef": {
+                        "Ref": "S3DeploymentBucket"
+                    },
+                    "referencetotransformerrootstackS3DeploymentRootKeyA71EA735Ref": {
+                        "Ref": "S3DeploymentRootKey"
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardQuerygetGroupDashboardauth0FunctionQuerygetGroupDashboardauth0FunctionAppSyncFunctionDF121ED0FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesQuerygetUserPreferencespostAuth0FunctionQuerygetUserPreferencespostAuth0FunctionAppSyncFunction37BD38CEFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunctionB7FCA0A9": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationcreateUserPreferencesinit0FunctionMutationcreateUserPreferencesinit0FunctionAppSyncFunction806016FBFunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardMutationcreateGroupDashboardauth0FunctionMutationcreateGroupDashboardauth0FunctionAppSyncFunction68C8B396FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunctionA4836BE3": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesMutationupdateUserPreferencesinit0FunctionMutationupdateUserPreferencesinit0FunctionAppSyncFunction2467F089FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackGroupDashboardNestedStackGroupDashboardNestedStackResourceF78D7682OutputstransformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncF5145DC66": {
+                        "Fn::GetAtt": [
+                            "GroupDashboard",
+                            "Outputs.transformerrootstackGroupDashboardSubscriptiononCreateGroupDashboardauth0FunctionSubscriptiononCreateGroupDashboardauth0FunctionAppSyncFunctionFA4554B4FunctionId"
+                        ]
+                    },
+                    "referencetotransformerrootstackUserPreferencesNestedStackUserPreferencesNestedStackResourceBC13D850OutputstransformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnA71C75397": {
+                        "Fn::GetAtt": [
+                            "UserPreferences",
+                            "Outputs.transformerrootstackUserPreferencesSubscriptionOnCreateUserPreferencesDataResolverFnSubscriptionOnCreateUserPreferencesDataResolverFnAppSyncFunctionED020DAFFunctionId"
+                        ]
+                    }
+                }
+            },
+            "DependsOn": [
+                "GraphQLAPITransformerSchema3CB2AE18"
+            ]
+        },
         "CustomResourcesjson": {
             "Type": "AWS::CloudFormation::Stack",
             "Properties": {
@@ -1046,7 +1364,10 @@
                 "SavedGraph",
                 "TextAutocomplete",
                 "UserSession",
-                "GroupPreferences"
+                "GroupPreferences",
+                "GroupTweetIgnore",
+                "GroupTweetAnnotations",
+                "GroupTwitterUserIgnore"
             ]
         }
     },

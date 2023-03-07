@@ -329,3 +329,153 @@ subscription OnDeleteGroupPreferences(
     _lastChangedAt
   }
 }
+subscription OnCreateGroupTweetIgnore(
+  $filter: ModelSubscriptionGroupTweetIgnoreFilterInput
+) {
+  onCreateGroupTweetIgnore(filter: $filter) {
+    id
+    url
+    ignoredBy
+    tweetId
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateGroupTweetIgnore(
+  $filter: ModelSubscriptionGroupTweetIgnoreFilterInput
+) {
+  onUpdateGroupTweetIgnore(filter: $filter) {
+    id
+    url
+    ignoredBy
+    tweetId
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteGroupTweetIgnore(
+  $filter: ModelSubscriptionGroupTweetIgnoreFilterInput
+) {
+  onDeleteGroupTweetIgnore(filter: $filter) {
+    id
+    url
+    ignoredBy
+    tweetId
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateGroupTweetAnnotations(
+  $filter: ModelSubscriptionGroupTweetAnnotationsFilterInput
+) {
+  onCreateGroupTweetAnnotations(filter: $filter) {
+    id
+    url
+    annotatedBy
+    tweetId
+    ownerGroups
+    annotations
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateGroupTweetAnnotations(
+  $filter: ModelSubscriptionGroupTweetAnnotationsFilterInput
+) {
+  onUpdateGroupTweetAnnotations(filter: $filter) {
+    id
+    url
+    annotatedBy
+    tweetId
+    ownerGroups
+    annotations
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteGroupTweetAnnotations(
+  $filter: ModelSubscriptionGroupTweetAnnotationsFilterInput
+) {
+  onDeleteGroupTweetAnnotations(filter: $filter) {
+    id
+    url
+    annotatedBy
+    tweetId
+    ownerGroups
+    annotations
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnCreateGroupTwitterUserIgnore(
+  $filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput
+) {
+  onCreateGroupTwitterUserIgnore(filter: $filter) {
+    id
+    twitterScreenName
+    ignoredBy
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnUpdateGroupTwitterUserIgnore(
+  $filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput
+) {
+  onUpdateGroupTwitterUserIgnore(filter: $filter) {
+    id
+    twitterScreenName
+    ignoredBy
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}
+subscription OnDeleteGroupTwitterUserIgnore(
+  $filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput
+) {
+  onDeleteGroupTwitterUserIgnore(filter: $filter) {
+    id
+    twitterScreenName
+    ignoredBy
+    ownerGroups
+    scope
+    createdAt
+    updatedAt
+    _version
+    _deleted
+    _lastChangedAt
+  }
+}

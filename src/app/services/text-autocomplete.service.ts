@@ -8,85 +8,85 @@ import {PreferenceService} from "../pref/preference.service";
 const log = new Logger("autocomplete-service");
 
 @Injectable({
-              providedIn: "root"
+                providedIn: "root"
             })
 export class TextAutoCompleteService {
 
 
-  constructor(private _notify: NotificationService, private _prefs: PreferenceService) {
+    constructor(private _notify: NotificationService, private _prefs: PreferenceService) {
 
-  }
-
-
-  public async create(type: string, text: string, forOwner = true,
-                      forGroup = false): Promise<TextAutocomplete> {
-    const owner = forOwner ? await this._prefs.username : null;
-    const group = forGroup ? this._prefs.groups[0] : null;
-    const results = await DataStore.query(TextAutocomplete,
-                                          q => q.or(r => r.owner("eq", owner).group("eq", group))
-                                                .text("eq", text)
-                                                .type("eq", type)
-    );
-    if (results.length === 0) {
-      return await DataStore.save(new TextAutocomplete({type, text, owner, group}));
-    } else {
-      return results[0];
     }
-  }
-
-  public async update(id: string, title: string, text: string): Promise<TextAutocomplete> {
-    const autocomplete = await this.get(id);
-    return await DataStore.save(TextAutocomplete.copyOf(autocomplete, m => {
-      m.text = text;
-    }));
-  }
 
 
-  public async get(id: string): Promise<TextAutocomplete | null> {
-    const results = await DataStore.query(TextAutocomplete, q => q.id("eq", id));
-    if (results.length === 0) {
-      return null;
-    } else {
-      console.log(results);
-      return results[0];
+    public async create(type: string, text: string, forOwner = true,
+                        forGroup = false): Promise<TextAutocomplete> {
+        const owner = forOwner ? await this._prefs.username : null;
+        const group = forGroup ? this._prefs.groups[0] : null;
+        const results = await DataStore.query(TextAutocomplete,
+                                              q => q.and(a => [q.or(o => [o.owner.eq(owner), o.group.eq(group)]),
+                                                               a.text.eq(text),
+                                                               a.type.eq(type)])
+        );
+        if (results.length === 0) {
+            return await DataStore.save(new TextAutocomplete({type, text, owner, group}));
+        } else {
+            return results[0];
+        }
     }
-  }
 
-  public async delete(id: string): Promise<TextAutocomplete> {
-    const results = await DataStore.delete(TextAutocomplete, q => q.id("eq", id));
-    if (results.length === 0) {
-      throw Error("No such state history " + id);
-    } else {
-      return results[0];
+    public async update(id: string, title: string, text: string): Promise<TextAutocomplete> {
+        const autocomplete = await this.get(id);
+        return await DataStore.save(TextAutocomplete.copyOf(autocomplete, m => {
+            m.text = text;
+        }));
     }
-  }
-
-  public async listByOwner(type: string, prefix: string): Promise<TextAutocomplete[]> {
-    const username = await this._prefs.username;
-    return await DataStore.query(TextAutocomplete, q => q.owner("eq", username).text("beginsWith", prefix)
-                                                         .type("eq", type));
-  }
-
-  public async listByGroup(type: string, prefix: string): Promise<TextAutocomplete[]> {
-    return await DataStore.query(TextAutocomplete,
-                                 q => q.group("eq", this._prefs.groups[0]).text("beginsWith", prefix)
-                                       .type("eq", type));
-  }
-
-  public async listByOwnerOrGroup(type: string, prefix: string): Promise<TextAutocomplete[]> {
-    const username = await this._prefs.username;
-    return await DataStore.query(TextAutocomplete,
-                                 q => q.or(r => r.owner("eq", username).group("eq", this._prefs.groups[0]))
-                                       .text("beginsWith", prefix)
-                                       .type("eq", type),
-                                 {sort: s => s.text(SortDirection.ASCENDING)}
-    );
-  }
-
-  public async init() {
 
 
-  }
+    public async get(id: string): Promise<TextAutocomplete | null> {
+        const results = await DataStore.query(TextAutocomplete, q => q.id.eq(id));
+        if (results.length === 0) {
+            return null;
+        } else {
+            console.log(results);
+            return results[0];
+        }
+    }
+
+    public async delete(id: string): Promise<TextAutocomplete> {
+        const results = await DataStore.delete(TextAutocomplete, q => q.id.eq(id));
+        if (results.length === 0) {
+            throw Error("No such state history " + id);
+        } else {
+            return results[0];
+        }
+    }
+
+    public async listByOwner(type: string, prefix: string): Promise<TextAutocomplete[]> {
+        const username = await this._prefs.username;
+        return await DataStore.query(TextAutocomplete, q => q.and(a => [a.owner.eq(username), a.text.beginsWith(prefix),
+                                                                        a.type.eq(type)]));
+    }
+
+    public async listByGroup(type: string, prefix: string): Promise<TextAutocomplete[]> {
+        return await DataStore.query(TextAutocomplete,
+                                     q => q.and(a => [a.group.eq(this._prefs.groups[0]), a.text.beginsWith(prefix),
+                                                      a.type.eq(type)]));
+    }
+
+    public async listByOwnerOrGroup(type: string, prefix: string): Promise<TextAutocomplete[]> {
+        const username = await this._prefs.username;
+        return await DataStore.query(TextAutocomplete,
+                                     q => q.and(a => [q.or(o => [o.owner.eq(username), o.group.eq(this._prefs.groups[0])]),
+                                                      a.text.beginsWith(prefix),
+                                                      a.type.eq(type)]),
+                                     {sort: s => s.text(SortDirection.ASCENDING)}
+        );
+    }
+
+    public async init() {
+
+
+    }
 
 
 }

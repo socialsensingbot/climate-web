@@ -4,7 +4,7 @@ import { schema } from './schema';
 
 
 
-const { UserPreferences, UserDashboard, GroupDashboard, SavedGraph, TextAutocomplete, UserSession, GroupPreferences } = initSchema(schema);
+const { UserPreferences, UserDashboard, GroupDashboard, SavedGraph, TextAutocomplete, UserSession, GroupPreferences, GroupTweetIgnore, GroupTweetAnnotations, GroupTwitterUserIgnore } = initSchema(schema);
 
 export {
   UserPreferences,
@@ -13,5 +13,8 @@ export {
   SavedGraph,
   TextAutocomplete,
   UserSession,
-  GroupPreferences
+  GroupPreferences,
+  GroupTweetIgnore,
+  GroupTweetAnnotations,
+  GroupTwitterUserIgnore
 };

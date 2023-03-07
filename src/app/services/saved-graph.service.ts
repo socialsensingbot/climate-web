@@ -50,7 +50,7 @@ export class SavedGraphService {
 
 
     public async get(id: string): Promise<SavedGraph | null> {
-        const results = await DataStore.query(SavedGraph, q => q.id("eq", id));
+        const results = await DataStore.query(SavedGraph, q => q.id.eq(id));
         if (results.length === 0) {
             return null;
         } else {
@@ -60,7 +60,7 @@ export class SavedGraphService {
     }
 
     public async delete(id: string): Promise<SavedGraph> {
-        const results = await DataStore.delete(SavedGraph, q => q.id("eq", id));
+        const results = await DataStore.delete(SavedGraph, q => q.id.eq(id));
         if (results.length === 0) {
             throw Error("No such state history " + id);
         } else {
@@ -70,11 +70,11 @@ export class SavedGraphService {
 
     public async listByOwner(): Promise<SavedGraph[]> {
         const username = await this._prefs.username;
-        return await DataStore.query(SavedGraph, q => q.owner("eq", username));
+        return await DataStore.query(SavedGraph, q => q.owner.eq(username));
     }
 
     public async listByGroup(): Promise<SavedGraph[]> {
-        return await DataStore.query(SavedGraph, q => q.group("eq", this._groups[0]));
+        return await DataStore.query(SavedGraph, q => q.group.eq(this._groups[0]));
     }
 
 

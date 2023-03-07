@@ -86,6 +86,47 @@ type GroupPreferences {
   _lastChangedAt: AWSTimestamp!
 }
 
+type GroupTweetIgnore {
+  id: ID!
+  url: String!
+  ignoredBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  scope: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupTweetAnnotations {
+  id: ID!
+  url: String!
+  annotatedBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  annotations: AWSJSON
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
+type GroupTwitterUserIgnore {
+  id: ID!
+  twitterScreenName: String!
+  ignoredBy: String!
+  ownerGroups: [String]
+  scope: String!
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  _version: Int!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+}
+
 input ModelStringInput {
   ne: String
   eq: String
@@ -273,6 +314,15 @@ type Query {
   getGroupPreferences(id: ID!): GroupPreferences
   listGroupPreferences(filter: ModelGroupPreferencesFilterInput, limit: Int, nextToken: String): ModelGroupPreferencesConnection
   syncGroupPreferences(filter: ModelGroupPreferencesFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupPreferencesConnection
+  getGroupTweetIgnore(id: ID!): GroupTweetIgnore
+  listGroupTweetIgnores(filter: ModelGroupTweetIgnoreFilterInput, limit: Int, nextToken: String): ModelGroupTweetIgnoreConnection
+  syncGroupTweetIgnores(filter: ModelGroupTweetIgnoreFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTweetIgnoreConnection
+  getGroupTweetAnnotations(id: ID!): GroupTweetAnnotations
+  listGroupTweetAnnotations(filter: ModelGroupTweetAnnotationsFilterInput, limit: Int, nextToken: String): ModelGroupTweetAnnotationsConnection
+  syncGroupTweetAnnotations(filter: ModelGroupTweetAnnotationsFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTweetAnnotationsConnection
+  getGroupTwitterUserIgnore(id: ID!): GroupTwitterUserIgnore
+  listGroupTwitterUserIgnores(filter: ModelGroupTwitterUserIgnoreFilterInput, limit: Int, nextToken: String): ModelGroupTwitterUserIgnoreConnection
+  syncGroupTwitterUserIgnores(filter: ModelGroupTwitterUserIgnoreFilterInput, limit: Int, nextToken: String, lastSync: AWSTimestamp): ModelGroupTwitterUserIgnoreConnection
 }
 
 input ModelUserPreferencesConditionInput {
@@ -324,6 +374,15 @@ type Mutation {
   createGroupPreferences(input: CreateGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
   updateGroupPreferences(input: UpdateGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
   deleteGroupPreferences(input: DeleteGroupPreferencesInput!, condition: ModelGroupPreferencesConditionInput): GroupPreferences
+  createGroupTweetIgnore(input: CreateGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  updateGroupTweetIgnore(input: UpdateGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  deleteGroupTweetIgnore(input: DeleteGroupTweetIgnoreInput!, condition: ModelGroupTweetIgnoreConditionInput): GroupTweetIgnore
+  createGroupTweetAnnotations(input: CreateGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  updateGroupTweetAnnotations(input: UpdateGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  deleteGroupTweetAnnotations(input: DeleteGroupTweetAnnotationsInput!, condition: ModelGroupTweetAnnotationsConditionInput): GroupTweetAnnotations
+  createGroupTwitterUserIgnore(input: CreateGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
+  updateGroupTwitterUserIgnore(input: UpdateGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
+  deleteGroupTwitterUserIgnore(input: DeleteGroupTwitterUserIgnoreInput!, condition: ModelGroupTwitterUserIgnoreConditionInput): GroupTwitterUserIgnore
 }
 
 input ModelSubscriptionUserPreferencesFilterInput {
@@ -355,6 +414,15 @@ type Subscription {
   onCreateGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["createGroupPreferences"])
   onUpdateGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["updateGroupPreferences"])
   onDeleteGroupPreferences(filter: ModelSubscriptionGroupPreferencesFilterInput): GroupPreferences @aws_subscribe(mutations: ["deleteGroupPreferences"])
+  onCreateGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["createGroupTweetIgnore"])
+  onUpdateGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["updateGroupTweetIgnore"])
+  onDeleteGroupTweetIgnore(filter: ModelSubscriptionGroupTweetIgnoreFilterInput): GroupTweetIgnore @aws_subscribe(mutations: ["deleteGroupTweetIgnore"])
+  onCreateGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["createGroupTweetAnnotations"])
+  onUpdateGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["updateGroupTweetAnnotations"])
+  onDeleteGroupTweetAnnotations(filter: ModelSubscriptionGroupTweetAnnotationsFilterInput): GroupTweetAnnotations @aws_subscribe(mutations: ["deleteGroupTweetAnnotations"])
+  onCreateGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["createGroupTwitterUserIgnore"])
+  onUpdateGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["updateGroupTwitterUserIgnore"])
+  onDeleteGroupTwitterUserIgnore(filter: ModelSubscriptionGroupTwitterUserIgnoreFilterInput): GroupTwitterUserIgnore @aws_subscribe(mutations: ["deleteGroupTwitterUserIgnore"])
 }
 
 type ModelUserDashboardConnection {
@@ -719,5 +787,195 @@ input ModelSubscriptionGroupPreferencesFilterInput {
   prefs: ModelSubscriptionStringInput
   and: [ModelSubscriptionGroupPreferencesFilterInput]
   or: [ModelSubscriptionGroupPreferencesFilterInput]
+}
+
+type ModelGroupTweetIgnoreConnection {
+  items: [GroupTweetIgnore]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTweetIgnoreFilterInput {
+  id: ModelIDInput
+  url: ModelStringInput
+  ignoredBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTweetIgnoreFilterInput]
+  or: [ModelGroupTweetIgnoreFilterInput]
+  not: ModelGroupTweetIgnoreFilterInput
+}
+
+input ModelGroupTweetIgnoreConditionInput {
+  url: ModelStringInput
+  ignoredBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTweetIgnoreConditionInput]
+  or: [ModelGroupTweetIgnoreConditionInput]
+  not: ModelGroupTweetIgnoreConditionInput
+}
+
+input CreateGroupTweetIgnoreInput {
+  id: ID
+  url: String!
+  ignoredBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  scope: String!
+  _version: Int
+}
+
+input UpdateGroupTweetIgnoreInput {
+  id: ID!
+  url: String
+  ignoredBy: String
+  tweetId: String
+  ownerGroups: [String]
+  scope: String
+  _version: Int
+}
+
+input DeleteGroupTweetIgnoreInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTweetIgnoreFilterInput {
+  id: ModelSubscriptionIDInput
+  url: ModelSubscriptionStringInput
+  ignoredBy: ModelSubscriptionStringInput
+  tweetId: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  scope: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTweetIgnoreFilterInput]
+  or: [ModelSubscriptionGroupTweetIgnoreFilterInput]
+}
+
+type ModelGroupTweetAnnotationsConnection {
+  items: [GroupTweetAnnotations]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTweetAnnotationsFilterInput {
+  id: ModelIDInput
+  url: ModelStringInput
+  annotatedBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  annotations: ModelStringInput
+  and: [ModelGroupTweetAnnotationsFilterInput]
+  or: [ModelGroupTweetAnnotationsFilterInput]
+  not: ModelGroupTweetAnnotationsFilterInput
+}
+
+input ModelGroupTweetAnnotationsConditionInput {
+  url: ModelStringInput
+  annotatedBy: ModelStringInput
+  tweetId: ModelStringInput
+  ownerGroups: ModelStringInput
+  annotations: ModelStringInput
+  and: [ModelGroupTweetAnnotationsConditionInput]
+  or: [ModelGroupTweetAnnotationsConditionInput]
+  not: ModelGroupTweetAnnotationsConditionInput
+}
+
+input CreateGroupTweetAnnotationsInput {
+  id: ID
+  url: String!
+  annotatedBy: String!
+  tweetId: String!
+  ownerGroups: [String]
+  annotations: AWSJSON
+  _version: Int
+}
+
+input UpdateGroupTweetAnnotationsInput {
+  id: ID!
+  url: String
+  annotatedBy: String
+  tweetId: String
+  ownerGroups: [String]
+  annotations: AWSJSON
+  _version: Int
+}
+
+input DeleteGroupTweetAnnotationsInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTweetAnnotationsFilterInput {
+  id: ModelSubscriptionIDInput
+  url: ModelSubscriptionStringInput
+  annotatedBy: ModelSubscriptionStringInput
+  tweetId: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  annotations: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTweetAnnotationsFilterInput]
+  or: [ModelSubscriptionGroupTweetAnnotationsFilterInput]
+}
+
+type ModelGroupTwitterUserIgnoreConnection {
+  items: [GroupTwitterUserIgnore]!
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+input ModelGroupTwitterUserIgnoreFilterInput {
+  id: ModelIDInput
+  twitterScreenName: ModelStringInput
+  ignoredBy: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTwitterUserIgnoreFilterInput]
+  or: [ModelGroupTwitterUserIgnoreFilterInput]
+  not: ModelGroupTwitterUserIgnoreFilterInput
+}
+
+input ModelGroupTwitterUserIgnoreConditionInput {
+  twitterScreenName: ModelStringInput
+  ignoredBy: ModelStringInput
+  ownerGroups: ModelStringInput
+  scope: ModelStringInput
+  and: [ModelGroupTwitterUserIgnoreConditionInput]
+  or: [ModelGroupTwitterUserIgnoreConditionInput]
+  not: ModelGroupTwitterUserIgnoreConditionInput
+}
+
+input CreateGroupTwitterUserIgnoreInput {
+  id: ID
+  twitterScreenName: String!
+  ignoredBy: String!
+  ownerGroups: [String]
+  scope: String!
+  _version: Int
+}
+
+input UpdateGroupTwitterUserIgnoreInput {
+  id: ID!
+  twitterScreenName: String
+  ignoredBy: String
+  ownerGroups: [String]
+  scope: String
+  _version: Int
+}
+
+input DeleteGroupTwitterUserIgnoreInput {
+  id: ID!
+  _version: Int
+}
+
+input ModelSubscriptionGroupTwitterUserIgnoreFilterInput {
+  id: ModelSubscriptionIDInput
+  twitterScreenName: ModelSubscriptionStringInput
+  ignoredBy: ModelSubscriptionStringInput
+  ownerGroups: ModelSubscriptionStringInput
+  scope: ModelSubscriptionStringInput
+  and: [ModelSubscriptionGroupTwitterUserIgnoreFilterInput]
+  or: [ModelSubscriptionGroupTwitterUserIgnoreFilterInput]
 }
 
