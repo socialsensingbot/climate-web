@@ -3,7 +3,6 @@ cd $(dirname $0)
 cd ..
 export BRANCH=${GITHUB_REF##*/}
 
-npx browserslist@latest --update-db
 
 if [[ "${BRANCH}" == staging ]]; then
   npm run-script build-prod
