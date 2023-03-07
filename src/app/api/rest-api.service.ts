@@ -4,21 +4,14 @@
 
 import {Injectable, NgZone} from "@angular/core";
 import Auth from "@aws-amplify/auth";
-import * as Lambda from "aws-sdk/clients/lambda";
 import {environment} from "../../environments/environment";
 import {NotificationService} from "../services/notification.service"; // npm install aws-sdk
-import {API} from "@aws-amplify/api";
 import {Logger} from "@aws-amplify/core";
 import {NgForageCache} from "ngforage";
 import {timer} from "rxjs";
 import {LoadingProgressService} from "../services/loading-progress.service";
 import {sleep} from "../common";
-import {Storage} from "@aws-amplify/storage";
 import {HttpClient} from "@angular/common/http";
-
-const useLambda = false;
-
-const retryPeriod = 20000;
 const log = new Logger("rest-api-service");
 
 @Injectable({
