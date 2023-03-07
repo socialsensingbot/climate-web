@@ -38,7 +38,7 @@
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync",
-      "lastPushTimeStamp": "2023-03-06T17:12:15.366Z",
+      "lastPushTimeStamp": "2023-03-07T15:08:47.332Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiclimate"
@@ -81,11 +81,12 @@
         "IdentityPoolName": "climate0ed6d1fc_identitypool_0ed6d1fc__dev",
         "UserPoolName": "climate0ed6d1fc_userpool_0ed6d1fc"
       },
-      "lastPushTimeStamp": "2023-03-06T17:12:15.367Z",
+      "lastPushTimeStamp": "2023-03-07T15:08:47.332Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/auth/climate0ed6d1fc-cloudformation-template.json",
         "logicalId": "authclimate0ed6d1fc"
-      }
+      },
+      "lastPushDirHash": "hLo9H1H7HoAXGNmDcywsmCbNMlo="
     }
   },
   "function": {
@@ -100,14 +101,14 @@
         "Name": "climate5cfc21a1CustomMessage-dev",
         "LambdaExecutionRole": "climate5cfc21a1CustomMessage-dev"
       },
-      "lastPushTimeStamp": "2023-03-06T17:12:15.368Z",
+      "lastPushTimeStamp": "2023-03-07T15:08:47.332Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/function/climate5cfc21a1CustomMessage-cloudformation-template.json",
         "logicalId": "functionclimate5cfc21a1CustomMessage"
       },
-      "lastBuildTimeStamp": "2023-03-06T17:09:40.156Z",
+      "lastBuildTimeStamp": "2023-03-07T15:07:42.378Z",
       "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-03-06T17:09:40.174Z",
+      "lastPackageTimeStamp": "2023-03-07T15:07:42.396Z",
       "distZipFilename": "climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip",
       "s3Bucket": {
         "deploymentBucketName": "amplify-climate-dev-191354-deployment",
@@ -125,7 +126,7 @@
         "BucketName": "ss-climate-json191354-dev",
         "Region": "eu-west-2"
       },
-      "lastPushTimeStamp": "2023-03-06T17:12:17.014Z",
+      "lastPushTimeStamp": "2023-03-07T15:08:47.332Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagejsonstorage"
