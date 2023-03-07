@@ -7,7 +7,7 @@
         "start-fast": "ng serve --poll 2000",
         "hmr": "ng serve --configuration hmr",
         "build": "ng build --aot",
-        "build-prod": "ng build --aot --configuration prod",
+        "build-prod": "ng build --aot --configuration production",
         "build-demo": "ng build --aot --configuration demo",
         "build-test": "ng build --aot --configuration test",
         "test": "ng test",
