@@ -44,7 +44,7 @@ export class RESTDataAPIService {
 
 
     public async post(path: string, payload: any): Promise<any> {
-        return await this.http.post<any>("http://localhost:3000" + path, payload, {
+        return await this.http.post<any>("http://climate-rest:3000" + path, payload, {
             headers: {
                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
             }
@@ -52,7 +52,7 @@ export class RESTDataAPIService {
     }
 
     public async get(path: string, payload: any): Promise<any> {
-        return await this.http.get<any>("http://localhost:3000" + path, {
+        return await this.http.get<any>("http://climate-rest:3000" + path, {
             params: payload, headers: {
                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
             }
