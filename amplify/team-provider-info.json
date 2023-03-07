@@ -22,11 +22,11 @@
           "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip"
         }
       },
-      "api": {
-        "climate": {}
-      },
       "storage": {
         "jsonstorage": {}
+      },
+      "api": {
+        "climate": {}
       }
     }
   }
