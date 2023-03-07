@@ -11,37 +11,8 @@ import {Dashboard} from "../app/pref/dashboard.service";
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-import "zone.js/dist/zone-error";
-import {SSLayerConfiguration} from "../app/types"; // Included with Angular CLI.
-
-
-const layers: SSLayerConfiguration = {
-    "available":    [
-        {
-            "id":       "flood",
-            "title":    "Floods",
-            "sources":  ["twitter"],
-            "hazards":  ["flood"],
-            "warnings": "exclude",
-            "language": "*",
-
-            "annotations": ["source", "impact"],
-            "icons":       ["flood"]
-        },
-        {
-            "id":       "wind",
-            "title":    "Wind",
-            "sources":  ["twitter"],
-            "hazards":  ["wind"],
-            "warnings": "exclude",
-            "language": "*",
-
-            "annotations": ["impact"],
-            "icons":       ["strong-wind"]
-        }
-    ],
-    "defaultLayer": "flood"
-};
+import "zone.js/dist/zone-error"; // Included with Angular CLI.
+import {SSLayerConfiguration} from "../app/types";
 
 const defaultDashboard: Dashboard = {
     boards: [{
@@ -53,26 +24,105 @@ const defaultDashboard: Dashboard = {
     }]
 };
 
+const layers: SSLayerConfiguration = {
+    "available":    [
+        {
+            "id":          "flood",
+            "title":       "Floods",
+            "sources":     ["twitter"],
+            "hazards":     ["flood"],
+            "warnings":    "exclude",
+            "language":    "*",
+            "annotations": ["source", "impact"],
+            "icons":       ["flood"]
+        },
+        {
+            "id":          "flood-cy",
+            "title":       "Floods (Welsh Language)",
+            "sources":     ["twitter"],
+            "hazards":     ["flood"],
+            "warnings":    "exclude",
+            "language":    "cy",
+            "annotations": ["source", "impact"],
+            "icons":       ["flood"]
+        },
+        {
+            "id":          "flood-with-warnings",
+            "title":       "Floods (includes warnings)",
+            "sources":     ["twitter"],
+            "hazards":     ["flood"],
+            "warnings":    "include",
+            "language":    "*",
+            "annotations": ["source", "impact"],
+            "icons":       ["flood", "storm-warning"]
+
+        },
+        {
+            "id":          "flood-warnings-only",
+            "title":       "Floods (only warnings)",
+            "sources":     ["twitter"],
+            "hazards":     ["flood"],
+            "warnings":    "only",
+            "language":    "*",
+            "annotations": ["source", "impact"],
+            "icons":       ["storm-warning"]
+        },
+        {
+            "id":          "wind",
+            "title":       "Wind",
+            "sources":     ["twitter"],
+            "hazards":     ["wind"],
+            "warnings":    "exclude",
+            "language":    "*",
+            "annotations": ["impact"],
+            "icons":       ["strong-wind"]
+
+        },
+        {
+            "id":          "wind-and-flood",
+            "title":       "Wind & Flood",
+            "sources":     ["twitter"],
+            "hazards":     ["wind", "flood"],
+            "warnings":    "exclude",
+            "language":    "*",
+            "annotations": ["source", "impact"],
+            "icons":       ["flood", "strong-wind"]
+        },
+        {
+            "id":          "snow",
+            "title":       "Snow",
+            "sources":     ["twitter"],
+            "hazards":     ["snow"],
+            "warnings":    "exclude",
+            "language":    "*",
+            "annotations": ["impact"],
+            "icons":       ["snow"]
+        },
+
+    ],
+    "defaultLayer": "flood"
+};
+
 export const environment = {
-    name:             "test",
-    lamdaEnvironment: "test",
-    version:          "test",
+    name:             "dev",
+    lamdaEnvironment: "dev",
+    version:          "dev",
     demo:             false,
     production:       false,
-    test:             true,
     hmr:              false,
     rollbar:          false,
-    toolbarColor:     "accent",
-    // timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-    timezone:                            "UTC",
-    multipleSessions:                    true, // Can the user be logged into multiple devices/browsers at once?
-    maxUsers:                            -1, // can be -1 (no limit), 0 - no logins, 1 - single user at a time, n - n concurrent users.
-    locale:                              "en-GB",
-    confirm:                             {
+    restApi:          "http://localhost:3000",
+    toolbarColor:     "primary",
+    timezone:         Intl.DateTimeFormat().resolvedOptions().timeZone,
+    // timezone:         "UTC",
+    multipleSessions: true, // Can the user be logged into multiple devices/browsers at once?
+    maxUsers:         -1, // can be -1 (no limit), 0 - no logins, 1 - single user at a time, n - n concurrent users.
+    locale:           "en-GB",
+    confirm:          {
         email:    "",
         password: ""
     },
-    annotations:                         [
+    annotations:      [
         {
             name:  "impact",
             title: "Impact",
@@ -96,8 +146,11 @@ export const environment = {
             ]
         },
     ],
-    features:                            ["impact", "source", "map", "dashboard", "analytics", "display"],
-    showErrors:                          true,
+
+    // features: ["impact", "source", "map"],
+    features: ["impact", "source", "map", "dashboard", "analytics", "display" /*, "historical"*/],
+
+    showErrors:                          false,
     showLoadingMessages:                 true,
     mostRecentDateIsNow:                 true,
     sanitizeForGDPR:                     true,
@@ -105,18 +158,22 @@ export const environment = {
     animateOnTimeSliderChange:           false,
     recentTweetHighlightOffsetInSeconds: 1200,
     defaultDataSet:                      "uk-flood-live",
-    availableDataSets:                   ["uk-flood-live"], // A list of datasets that will appear in the toolbar dropdown, or "*" for all.
+    availableDataSets:                   ["*"], // A list of datasets that will appear in the toolbar dropdown, or "*" for all.
     cacheProcessedTweets:                false,
     mapTileUrlTemplate:                  "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnVkeWFydGh1ciIsImEiOiJjamZrem1ic3owY3k4MnhuYWt2dGxmZmk5In0.ddp6_hNhs_n9MJMrlBwTVg",
     defaultDashboard,
-    layers,
-    layersEnabled:                       ["flood", "wind", "snow"],
+    layers:                              layers,
+    layersEnabled:                       ["flood", "flood-cy", "flood-with-warnings", "flood-warnings-only", "wind", "wind-and-flood",
+                                          "snow"],
     blinkRateInMilliseconds:             1000,
     // mapTileUrlTemplate:
     // "https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoicnVkeWFydGh1ciIsImEiOiJjamZrem1ic3owY3k4MnhuYWt2dGxmZmk5In0.ddp6_hNhs_n9MJMrlBwTVg"
     shareTextAutocompleteInGroup:    true,
-    maxCallsPerMinute:               10000,
+    useRestMapData:                  true,
+    maxCallsPerMinute:               300,
     analyticsDefaultRegions:         ["uk"],
+    tweetCSVExportFormat:            "default",
+    showAnalyticsSideMenu:           false,
     countryDownloadRegionType:       "bi_country",
     exceedanceThreshold:             100,
     countThreshold:                  0,
@@ -125,6 +182,5 @@ export const environment = {
     publicDisplayMaxTweets:          60,
     publicDisplayMaxTweetsRetrieved: 200,
     defaultPublicDisplayScript:      "default_script",
-
 
 };

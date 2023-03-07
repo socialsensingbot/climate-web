@@ -1,114 +1,140 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateUserPreferences($owner: String) {
-  onCreateUserPreferences(owner: $owner) {
+subscription OnCreateUserPreferences(
+  $filter: ModelSubscriptionUserPreferencesFilterInput
+  $owner: String
+) {
+  onCreateUserPreferences(filter: $filter, owner: $owner) {
     id
     owner
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnUpdateUserPreferences($owner: String) {
-  onUpdateUserPreferences(owner: $owner) {
+subscription OnUpdateUserPreferences(
+  $filter: ModelSubscriptionUserPreferencesFilterInput
+  $owner: String
+) {
+  onUpdateUserPreferences(filter: $filter, owner: $owner) {
     id
     owner
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnDeleteUserPreferences($owner: String) {
-  onDeleteUserPreferences(owner: $owner) {
+subscription OnDeleteUserPreferences(
+  $filter: ModelSubscriptionUserPreferencesFilterInput
+  $owner: String
+) {
+  onDeleteUserPreferences(filter: $filter, owner: $owner) {
     id
     owner
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnCreateUserDashboard($owner: String) {
-  onCreateUserDashboard(owner: $owner) {
+subscription OnCreateUserDashboard(
+  $filter: ModelSubscriptionUserDashboardFilterInput
+  $owner: String
+) {
+  onCreateUserDashboard(filter: $filter, owner: $owner) {
     id
     owner
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnUpdateUserDashboard($owner: String) {
-  onUpdateUserDashboard(owner: $owner) {
+subscription OnUpdateUserDashboard(
+  $filter: ModelSubscriptionUserDashboardFilterInput
+  $owner: String
+) {
+  onUpdateUserDashboard(filter: $filter, owner: $owner) {
     id
     owner
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnDeleteUserDashboard($owner: String) {
-  onDeleteUserDashboard(owner: $owner) {
+subscription OnDeleteUserDashboard(
+  $filter: ModelSubscriptionUserDashboardFilterInput
+  $owner: String
+) {
+  onDeleteUserDashboard(filter: $filter, owner: $owner) {
     id
     owner
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnCreateGroupDashboard {
-  onCreateGroupDashboard {
+subscription OnCreateGroupDashboard(
+  $filter: ModelSubscriptionGroupDashboardFilterInput
+) {
+  onCreateGroupDashboard(filter: $filter) {
     id
     group
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnUpdateGroupDashboard {
-  onUpdateGroupDashboard {
+subscription OnUpdateGroupDashboard(
+  $filter: ModelSubscriptionGroupDashboardFilterInput
+) {
+  onUpdateGroupDashboard(filter: $filter) {
     id
     group
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnDeleteGroupDashboard {
-  onDeleteGroupDashboard {
+subscription OnDeleteGroupDashboard(
+  $filter: ModelSubscriptionGroupDashboardFilterInput
+) {
+  onDeleteGroupDashboard(filter: $filter) {
     id
     group
     dashboard
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnCreateSavedGraph {
-  onCreateSavedGraph {
+subscription OnCreateSavedGraph(
+  $filter: ModelSubscriptionSavedGraphFilterInput
+) {
+  onCreateSavedGraph(filter: $filter) {
     id
     type
     title
@@ -116,14 +142,16 @@ subscription OnCreateSavedGraph {
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnUpdateSavedGraph {
-  onUpdateSavedGraph {
+subscription OnUpdateSavedGraph(
+  $filter: ModelSubscriptionSavedGraphFilterInput
+) {
+  onUpdateSavedGraph(filter: $filter) {
     id
     type
     title
@@ -131,14 +159,16 @@ subscription OnUpdateSavedGraph {
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnDeleteSavedGraph {
-  onDeleteSavedGraph {
+subscription OnDeleteSavedGraph(
+  $filter: ModelSubscriptionSavedGraphFilterInput
+) {
+  onDeleteSavedGraph(filter: $filter) {
     id
     type
     title
@@ -146,56 +176,64 @@ subscription OnDeleteSavedGraph {
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnCreateTextAutocomplete {
-  onCreateTextAutocomplete {
+subscription OnCreateTextAutocomplete(
+  $filter: ModelSubscriptionTextAutocompleteFilterInput
+) {
+  onCreateTextAutocomplete(filter: $filter) {
     id
     type
     text
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnUpdateTextAutocomplete {
-  onUpdateTextAutocomplete {
+subscription OnUpdateTextAutocomplete(
+  $filter: ModelSubscriptionTextAutocompleteFilterInput
+) {
+  onUpdateTextAutocomplete(filter: $filter) {
     id
     type
     text
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnDeleteTextAutocomplete {
-  onDeleteTextAutocomplete {
+subscription OnDeleteTextAutocomplete(
+  $filter: ModelSubscriptionTextAutocompleteFilterInput
+) {
+  onDeleteTextAutocomplete(filter: $filter) {
     id
     type
     text
     group
     owner
     createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnCreateUserSession {
-  onCreateUserSession {
+subscription OnCreateUserSession(
+  $filter: ModelSubscriptionUserSessionFilterInput
+) {
+  onCreateUserSession(filter: $filter) {
     id
     fingerprint
     client
@@ -205,14 +243,16 @@ subscription OnCreateUserSession {
     ttl
     createdAt
     sessionId
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnUpdateUserSession {
-  onUpdateUserSession {
+subscription OnUpdateUserSession(
+  $filter: ModelSubscriptionUserSessionFilterInput
+) {
+  onUpdateUserSession(filter: $filter) {
     id
     fingerprint
     client
@@ -222,14 +262,16 @@ subscription OnUpdateUserSession {
     ttl
     createdAt
     sessionId
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnDeleteUserSession {
-  onDeleteUserSession {
+subscription OnDeleteUserSession(
+  $filter: ModelSubscriptionUserSessionFilterInput
+) {
+  onDeleteUserSession(filter: $filter) {
     id
     fingerprint
     client
@@ -239,177 +281,51 @@ subscription OnDeleteUserSession {
     ttl
     createdAt
     sessionId
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    updatedAt
   }
 }
-subscription OnCreateGroupPreferences {
-  onCreateGroupPreferences {
+subscription OnCreateGroupPreferences(
+  $filter: ModelSubscriptionGroupPreferencesFilterInput
+) {
+  onCreateGroupPreferences(filter: $filter) {
     id
     group
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnUpdateGroupPreferences {
-  onUpdateGroupPreferences {
+subscription OnUpdateGroupPreferences(
+  $filter: ModelSubscriptionGroupPreferencesFilterInput
+) {
+  onUpdateGroupPreferences(filter: $filter) {
     id
     group
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
   }
 }
-subscription OnDeleteGroupPreferences {
-  onDeleteGroupPreferences {
+subscription OnDeleteGroupPreferences(
+  $filter: ModelSubscriptionGroupPreferencesFilterInput
+) {
+  onDeleteGroupPreferences(filter: $filter) {
     id
     group
     prefs
+    createdAt
+    updatedAt
     _version
     _deleted
     _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateGroupTweetIgnore {
-  onCreateGroupTweetIgnore {
-    id
-    url
-    ignoredBy
-    tweetId
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateGroupTweetIgnore {
-  onUpdateGroupTweetIgnore {
-    id
-    url
-    ignoredBy
-    tweetId
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteGroupTweetIgnore {
-  onDeleteGroupTweetIgnore {
-    id
-    url
-    ignoredBy
-    tweetId
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateGroupTweetAnnotations {
-  onCreateGroupTweetAnnotations {
-    id
-    url
-    annotatedBy
-    tweetId
-    ownerGroups
-    annotations
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateGroupTweetAnnotations {
-  onUpdateGroupTweetAnnotations {
-    id
-    url
-    annotatedBy
-    tweetId
-    ownerGroups
-    annotations
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteGroupTweetAnnotations {
-  onDeleteGroupTweetAnnotations {
-    id
-    url
-    annotatedBy
-    tweetId
-    ownerGroups
-    annotations
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnCreateGroupTwitterUserIgnore {
-  onCreateGroupTwitterUserIgnore {
-    id
-    twitterScreenName
-    ignoredBy
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateGroupTwitterUserIgnore {
-  onUpdateGroupTwitterUserIgnore {
-    id
-    twitterScreenName
-    ignoredBy
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteGroupTwitterUserIgnore {
-  onDeleteGroupTwitterUserIgnore {
-    id
-    twitterScreenName
-    ignoredBy
-    ownerGroups
-    scope
-    _version
-    _deleted
-    _lastChangedAt
-    createdAt
-    updatedAt
   }
 }

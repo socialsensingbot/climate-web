@@ -25,7 +25,7 @@ const defaultDashboard: Dashboard = {
 };
 
 const layers: SSLayerConfiguration = {
-    "available": [
+    "available":    [
         {
             "id":          "flood",
             "title":       "Floods",
@@ -111,6 +111,7 @@ export const environment = {
     production:       false,
     hmr:              false,
     rollbar:          false,
+    restApi:          "http://localhost:3000",
     toolbarColor:     "primary",
     timezone:         Intl.DateTimeFormat().resolvedOptions().timeZone,
     // timezone:         "UTC",

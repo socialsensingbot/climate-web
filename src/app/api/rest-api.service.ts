@@ -12,6 +12,7 @@ import {timer} from "rxjs";
 import {LoadingProgressService} from "../services/loading-progress.service";
 import {sleep} from "../common";
 import {HttpClient} from "@angular/common/http";
+
 const log = new Logger("rest-api-service");
 
 @Injectable({
@@ -37,7 +38,7 @@ export class RESTDataAPIService {
 
 
     public async post(path: string, payload: any): Promise<any> {
-        return await this.http.post<any>("http://climate-rest:3000" + path, payload, {
+        return await this.http.post<any>(environment.restApi + path, payload, {
             headers: {
                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
             }
@@ -45,7 +46,7 @@ export class RESTDataAPIService {
     }
 
     public async get(path: string, payload: any): Promise<any> {
-        return await this.http.get<any>("http://climate-rest:3000" + path, {
+        return await this.http.get<any>(environment.restApi + path, {
             params: payload, headers: {
                 Authorization: `Bearer ${(await Auth.currentSession()).getIdToken().getJwtToken()}`
             }
