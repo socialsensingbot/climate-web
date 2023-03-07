@@ -18,7 +18,7 @@ import {UIExecutionService} from "../../services/uiexecution.service";
 import {SavedGraphService} from "../../services/saved-graph.service";
 import {SavedGraph} from "../../../models";
 import {NameGraphDialogComponent} from "./name-graph-dialog/name-graph-dialog.component";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {NotificationService} from "src/app/services/notification.service";
 import {toLabel} from "../graph";
 import {DashboardService} from "../../pref/dashboard.service";

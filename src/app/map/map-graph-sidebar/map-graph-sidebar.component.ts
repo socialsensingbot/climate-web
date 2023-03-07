@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {RegionSelection} from "../region-selection";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {DashboardService} from "../../pref/dashboard.service";
 import {Logger} from "@aws-amplify/core";
 import {PreferenceService} from "../../pref/preference.service";

@@ -5,8 +5,8 @@ import {Logger} from "@aws-amplify/core";
 import {Subscription, timer} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {AnnotationService} from "../../../pref/annotation.service";
-import {MatDialog} from "@angular/material/dialog";
-import {MatMenuTrigger} from "@angular/material/menu";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
+import {MatLegacyMenuTrigger as MatMenuTrigger} from "@angular/material/legacy-menu";
 
 
 const log = new Logger("pd-tweet-list");

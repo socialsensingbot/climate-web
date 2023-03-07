@@ -16,7 +16,7 @@ import {ConfirmCodeComponent} from "./auth/confirm-code/confirm-code.component";
 import {AuthService} from "./auth/auth.service";
 import {HomeComponent} from "./home/home.component";
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
-import {MatSliderModule} from "@angular/material/slider";
+import {MatLegacySliderModule as MatSliderModule} from "@angular/material/legacy-slider";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {TwitterPanelComponent} from "./map/twitter/twitter-panel.component";
 import {DateRangeSliderComponent} from "./map/date-range-slider/date-range-slider.component";

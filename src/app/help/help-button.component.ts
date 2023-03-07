@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from "@angular/core";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {HelpDialogComponent} from "./help-dialog.component";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Logger} from "@aws-amplify/core";

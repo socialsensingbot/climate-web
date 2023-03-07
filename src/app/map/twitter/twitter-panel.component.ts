@@ -8,7 +8,7 @@ import {RegionSelection} from "../region-selection";
 import {AnnotationService} from "../../pref/annotation.service";
 import {TwitterExporterService} from "./twitter-exporter.service";
 import {RESTMapDataService} from "../data/rest-map-data.service";
-import {MatTabChangeEvent} from "@angular/material/tabs";
+import {MatLegacyTabChangeEvent as MatTabChangeEvent} from "@angular/material/legacy-tabs";
 
 const log = new Logger("twitter-panel");
 

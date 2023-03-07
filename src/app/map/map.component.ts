@@ -28,7 +28,7 @@ import {RESTMapDataService} from "./data/rest-map-data.service";
 import {TwitterExporterService} from "./twitter/twitter-exporter.service";
 import {MapSelectionService} from "../map-selection.service";
 import {MatSidenav} from "@angular/material/sidenav";
-import {MatDialog} from "@angular/material/dialog";
+import {MatLegacyDialog as MatDialog} from "@angular/material/legacy-dialog";
 import {OpenPublicDisplayComponent} from "../public-display/open-public-display/open-public-display.component";
 
 

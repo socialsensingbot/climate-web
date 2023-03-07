@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {Logger} from "@aws-amplify/core";
-import {ProgressSpinnerMode} from "@angular/material/progress-spinner";
+import {LegacyProgressSpinnerMode as ProgressSpinnerMode} from "@angular/material/legacy-progress-spinner";
 
 const log = new Logger("loading");
 
