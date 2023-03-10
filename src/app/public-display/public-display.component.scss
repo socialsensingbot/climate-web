@@ -54,10 +54,10 @@ $bottom-margin: 1vw;
 
     .app-public-display-close-btn {
         position: absolute;
-        font-size: 4vh;
-        width: 4vh;
-        right: 0px;
-        text-shadow: 0.1vh 0.1vh rgba(100, 100, 100, 0.4);
+        //font-size: 4vh;
+        right: 2px;
+        top: 2px;
+        //text-shadow: 0.1vh 0.1vh rgba(100, 100, 100, 0.4);
     }
 
     //Wide
@@ -66,9 +66,8 @@ $bottom-margin: 1vw;
         right: 0.5vw;
         left: 0.5vw;
         .app-public-display-close-btn {
-            font-size: 4vw;
-            width: 4vw;
-            text-shadow: 0.1vw 0.1vw rgba(100, 100, 100, 0.4);
+            //font-size: 4vw;
+            //text-shadow: 0.1vw 0.1vw rgba(100, 100, 100, 0.4);
         }
     }
 }

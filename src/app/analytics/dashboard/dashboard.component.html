@@ -94,10 +94,9 @@
 </div>
 
 <div class="app-dashboard-toolbar">
-    <button *ngIf="pref.ready &&pref.featureSupported('map')" [queryParamsHandling]="'merge'"
+    <button mat-icon-button *ngIf="pref.ready &&pref.featureSupported('map')" [queryParamsHandling]="'merge'"
             [routerLink]="'/map/'+map.id"
-            mat-button
-            style="font-size:2vh">
+            style="top:4px;right:4px;">
         <!--       <mat-icon>power_settings_new</mat-icon>-->
         <mat-icon>close</mat-icon>
     </button>

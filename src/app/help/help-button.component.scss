@@ -1,5 +1,7 @@
+@import "../../styles.scss";
+
 button.mat-button.help-button {
-    color: whitesmoke;
+    color: $blackish;
     max-width: 32px;
     min-width: 32px;
     padding-right: 0px;
