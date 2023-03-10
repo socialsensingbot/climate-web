@@ -85,7 +85,7 @@
 
     .ng5-slider .ng5-slider-selection {
       background: $blackish;
-      height: 2px;
+      height: 1px;
     }
 
     .ng5-slider-span:focus {
@@ -105,12 +105,12 @@
     }
 
     .ng5-slider .ng5-slider-pointer {
-      width: 16px;
-      height: 16px;
-      top: -8px;
+      width: 8px;
+      height: 8px;
+      top: -4px;
       bottom: 0;
       background-color: $blackish;
-      border-radius: 8px;
+      border-radius: 4px;
     }
 
     .ng5-slider .ng5-slider-pointer:after {
@@ -131,6 +131,3 @@
     }
   }
 }
-
-
-

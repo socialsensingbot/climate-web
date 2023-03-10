@@ -14,36 +14,35 @@
   },
   "api": {
     "climate": {
-      "service": "AppSync",
-      "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
-          "category": "auth",
-          "resourceName": "climate0ed6d1fc",
           "attributes": [
             "UserPoolId"
-          ]
+          ],
+          "category": "auth",
+          "resourceName": "climate0ed6d1fc"
         }
       ],
       "output": {
         "authConfig": {
+          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
               "userPoolId": "authclimate0ed6d1fc"
             }
-          },
-          "additionalAuthenticationProviders": []
+          }
         },
         "GraphQLAPIIdOutput": "46424o7w7re4xecdoa6maoudra",
         "GraphQLAPIEndpointOutput": "https://q2ztmgyiczcvhaqfowho6uiq3y.appsync-api.eu-west-2.amazonaws.com/graphql"
       },
+      "providerPlugin": "awscloudformation",
+      "service": "AppSync",
+      "lastPushTimeStamp": "2023-03-09T18:09:56.936Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/api/cloudformation-template.json",
         "logicalId": "apiclimate"
-      },
-      "lastPushTimeStamp": "2023-03-07T17:52:43.989Z",
-      "lastPushDirHash": "dX/5kWeOUSnoj0h5jpAXdMB/M/Q="
+      }
     }
   },
   "auth": {
@@ -81,12 +80,11 @@
         "IdentityPoolName": "climate0ed6d1fc_identitypool_0ed6d1fc__dev",
         "UserPoolName": "climate0ed6d1fc_userpool_0ed6d1fc"
       },
-      "lastPushTimeStamp": "2023-03-07T17:52:41.491Z",
+      "lastPushTimeStamp": "2023-03-09T18:09:56.937Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/auth/climate0ed6d1fc-cloudformation-template.json",
         "logicalId": "authclimate0ed6d1fc"
-      },
-      "lastPushDirHash": "hLo9H1H7HoAXGNmDcywsmCbNMlo="
+      }
     }
   },
   "function": {
@@ -101,7 +99,7 @@
         "Name": "climate5cfc21a1CustomMessage-dev",
         "LambdaExecutionRole": "climate5cfc21a1CustomMessage-dev"
       },
-      "lastPushTimeStamp": "2023-03-07T17:52:41.492Z",
+      "lastPushTimeStamp": "2023-03-09T18:09:56.937Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/function/climate5cfc21a1CustomMessage-cloudformation-template.json",
         "logicalId": "functionclimate5cfc21a1CustomMessage"
@@ -109,12 +107,7 @@
       "s3Bucket": {
         "deploymentBucketName": "amplify-climate-dev-191354-deployment",
         "s3Key": "amplify-builds/climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip"
-      },
-      "lastBuildTimeStamp": "2023-03-07T16:44:08.073Z",
-      "lastBuildType": "PROD",
-      "lastPackageTimeStamp": "2023-03-07T16:44:08.094Z",
-      "distZipFilename": "climate5cfc21a1CustomMessage-6b776f62736e76352f33-build.zip",
-      "lastPushDirHash": "krAVD9VbDWnzx8DHm7Fk2yCsWN4="
+      }
     }
   },
   "storage": {
@@ -126,12 +119,11 @@
         "BucketName": "ss-climate-json191354-dev",
         "Region": "eu-west-2"
       },
-      "lastPushTimeStamp": "2023-03-07T17:52:41.494Z",
+      "lastPushTimeStamp": "2023-03-09T18:09:59.544Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-climate-dev-191354-deployment/amplify-cfn-templates/storage/cloudformation-template.json",
         "logicalId": "storagejsonstorage"
-      },
-      "lastPushDirHash": "jOa4itp7ZZY8+a95uN8Hfpz8sgA="
+      }
     }
   }
 }
