@@ -4,7 +4,7 @@ import {ColorData, ColorFunctions, numberLayerShortNames} from "../types";
 export function getColor(values, colors, d) {
     let result;
     if (d === 0) {
-        result = "rgba(255,255,255,0)";
+        result = "rgba(200,200,200,0.5)";
     } else {
         for (let i = 0; i < values.length; i++) {
             if (d > values[i]) {
@@ -46,9 +46,9 @@ export class ColorCodeService {
                             fillColor:   getColor(values, colors, d),
                             weight:      1,
                             opacity:     0.5,
-                            color:       "white",
+                            color:       "#ddd",
                             dashArray:   "",
-                            fillOpacity: (d === 0) ? 0.1 : 0.7,
+                            fillOpacity: (d === 0) ? 1.0 : 0.7,
                             className:   ("x-feature-name-" + feature.properties.name).replace(/ +/g, "-") + " app-map-region-geography"
                         };
                     }

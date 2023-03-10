@@ -52,9 +52,9 @@ import {TimeseriesWidgetComponent} from "./analytics/widgets/twitter-timeseries/
 import {ForgotPassComponent} from "./auth/forgot-pass/forgot-pass.component";
 import {ResetPassComponent} from "./auth/reset-pass/reset-pass.component";
 import {MAT_DATE_LOCALE} from "@angular/material/core";
-import {PublicDisplayComponent} from './public-display/public-display.component';
+import {PublicDisplayComponent} from "./public-display/public-display.component";
 import {PublicDisplayTweetListComponent} from "./map/twitter/public-display-tweet-list/public-display-tweet-list.component";
-import {OpenPublicDisplayComponent} from './public-display/open-public-display/open-public-display.component';
+import {OpenPublicDisplayComponent} from "./public-display/open-public-display/open-public-display.component";
 import {HistoricalDateRangeSliderComponent} from "./map/historical-date-range-slider/historical-date-range-slider.component";
 
 @NgModule({

@@ -27,7 +27,7 @@ $tweetHeaderOffset: 16px;
     .app-tweet-area-loading-spinner {
         margin: 2em auto;
         margin-top: 24px;
-        margin-left: $drawer-width/2;
+        margin-left: calc($drawer-width / 2);
         opacity: 0.3;
     }
 
@@ -82,7 +82,7 @@ mat-spinner.app-tweet-scroll-spinner {
     height: 24px;
     width: 24px;
     opacity: 0.3;
-    left: ($drawer-width / 2 - 12px);
+    left: calc($drawer-width / 2 - 12px);
     display: none !important;
     position: absolute;
 }

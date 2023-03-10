@@ -1,52 +1,74 @@
-@use 'sass:map';
+//@use 'sass:map';
 @use '@angular/material' as mat;
-@include mat.core();
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-$blackish: rgba(80,80, 80, 1.0);
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$indigo-palette, 500);
+$my-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+$my-theme: mat.define-light-theme((
+        color: (
+                primary: $my-primary,
+                accent: $my-accent,
+        ),
+        typography: mat.define-typography-config(),
+        density: 0,
+));
+
+// Emit theme-dependent styles for common features used across multiple components.
+@include mat.core-theme($my-theme);
+
+// Emit styles for MatButton based on `$my-theme`. Because the configuration
+// passed to `define-light-theme` omits typography, `button-theme` will not
+// emit any typography styles.
+@include mat.button-theme($my-theme);
+@include mat.dialog-theme($my-theme);
+@include mat.legacy-form-field-theme($my-theme);
+
+//@import '@angular/material/theming';
+
+
+$blackish: rgba(80, 80, 80, 1.0);
 $lighter-black: rgba(128, 128, 128, 1.0);
+$light-grey: rgba(180, 180, 180, 1.0);
+$lighter-grey: rgba(220, 220, 220, 1.0);
 $disabled-black: rgba(75, 75, 75, 1.0);
 .amplify-block {
 
 
-  .amplify-container {
-    padding-bottom: 2em;
-  }
+    .amplify-container {
+        padding-bottom: 2em;
+    }
 }
 
-
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 
-// src/styles.scss
+//
+//$app-primary: mat.define-palette(mat.$light-blue-palette, 600);
+//$app-accent: mat.define-palette(mat.$pink-palette, 800);
+//$app-active: mat.define-palette(mat.$pink-palette, 800);
+//
+//// The warn palette is optional (defaults to red).
+//$app-warn: mat.define-palette(mat.$red-palette);
+//
+//$app-theme: mat.define-light-theme(
+//                (
+//                        color: (
+//                                primary: $app-primary,
+//                                accent: $app-accent,
+//                                warn: $app-warn,
+//                        ),
+//                )
+//);
 
+// Emit theme-dependent styles for common features used across multiple components.
+//@include mat.core-theme($app-theme);
 
-$app-primary: mat.define-palette(mat.$light-blue-palette, 600);
-$app-accent: mat.define-palette(mat.$pink-palette, 800);
-$app-active: mat.define-palette(mat.$pink-palette, 800);
-
-// The warn palette is optional (defaults to red).
-$app-warn: mat.define-palette(mat.$red-palette);
-
-$app-theme: mat.define-light-theme(
-                (
-                        color: (
-                                primary: $app-primary,
-                                accent: $app-accent,
-                                warn: $app-warn,
-                        ),
-                )
-);
-
-@include mat.all-component-themes($app-theme);
-
+//
 //@function my-mat-light-theme-foreground($color) {
 //  @return (
 //    base: $blackish,
@@ -67,9 +89,9 @@ $app-theme: mat.define-light-theme(
 //}
 //
 //;
-
-// You can put any color here. I've chosen mat-color($my-app-primary, 700)
-//$my-foreground: my-mat-light-theme-foreground(mat-color($app-primary, 700));
+//
+//// You can put any color here. I've chosen mat-color($my-app-primary, 700)
+//$my-foreground: my-mat-light-theme-foreground($app-primary);
 //$my-app-theme-custom: map-merge($app-theme, (foreground: $my-foreground));
 
 // Include theme styles for core and each component used in your app.
@@ -77,84 +99,81 @@ $app-theme: mat.define-light-theme(
 // that you are using.
 //@include angular-material-theme($my-app-theme-custom);
 
+//@include mat.all-component-themes($app-theme);
 
 .active {
-  //color: mat-color($app-primary);
+    //color: mat-color($app-primary);
 }
 
 .valid, .primary {
-  //color: mat-color($app-primary);
+    //color: mat-color($app-primary);
 }
 
 
 html, body {
-  height: 100%;
+    height: 100%;
 }
 
 body {
-  margin: 0;
-  font-family: Helvetica, Roboto, "Segoe UI", Calibri, sans-serif;
+    margin: 0;
+    font-family: Helvetica, Roboto, "Segoe UI", Calibri, sans-serif;
 }
 
 form {
-  width: 100%;
+    width: 100%;
 }
 
 form > * {
-  margin-bottom: 1.5em;
-  width: 100%;
+    margin-bottom: 1.5em;
+    width: 100%;
 }
 
 a {
-  //color: mat-color($app-accent);
+    //color: mat-color($app-accent);
 }
 
 .cursor-pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .full-width {
-  width: 100%;
+    width: 100%;
 }
 
 .active {
-  //color: mat-color($app-active);
+    //color: mat-color($app-active);
 }
 
 blockquote {
 
-  &.twitter-tweet-error {
-    * {
-      display: none;
+    &.twitter-tweet-error {
+        * {
+            display: none;
+        }
     }
-  }
 }
 
 .app-toolbar-separator {
-  display: flex;
-  min-width: 1em;
+    display: flex;
+    min-width: 1em;
 }
 
 .app-toolbar-expanding-separator {
-  display: flex;
-  flex-grow: 10;
-  min-width: 1em;
-  max-width: 100%;
+    display: flex;
+    flex-grow: 10;
+    min-width: 1em;
+    max-width: 100%;
 }
 
 .app-toolbar {
-  display: flex;
-  //flex-direction: row;
-  justify-content: left;
-  font-size: 14px;
-  //overflow: visible;
-  background-color: white;
-  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+    display: flex;
+    //flex-direction: row;
+    justify-content: left;
+    font-size: 14px;
+    //overflow: visible;
+    background-color: whitesmoke;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.2);
 
-    button {
-        background:none !important;
-        color: whitesmoke ;
-    }
 }
 
 .mat-tab-label, .mat-tab-link {
@@ -170,7 +189,7 @@ blockquote {
     font-family: 'Josefin Sans', sans-serif;
     font-size: 18px;
     background: none;
-    color:whitesmoke;
+    color: $blackish;
 }
 
 .logo-button img {
@@ -180,10 +199,50 @@ blockquote {
     min-height: 24px;
     margin-top: -4px;
     margin-right: 6px;
+    color: $blackish;
 }
 
 
 .menu-spacer {
     display: inline-block;
     width: 100%;
+}
+
+
+.mat-card {
+    background: #fff;
+}
+
+
+.mat-select-panel {
+    background: #fff;
+}
+
+.mat-select-value {
+    color: $blackish !important;
+}
+
+.mat-select-panel:not([class*=mat-elevation-z]) {
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+.mat-dialog-container {
+    background: #fff;
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, .2), 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12);
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.expanded-toolbar {
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.3);
+    overflow: visible;
+    position: absolute;
+    border: solid 1px $lighter-grey;
+    button {
+        margin-right:4px;
+    }
 }
